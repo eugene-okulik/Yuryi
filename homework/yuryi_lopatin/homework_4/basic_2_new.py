@@ -3,7 +3,7 @@ my_dict = {
     'list': [1, '2_for_delite_element', 3, 4, 5],
     'inside_dict': {'RU': 'Msk', 'KZ': 'Atyrau', 'KZ2': 'Almaty', 'TH': 'Sammui', 'for_delite': 'this_is_for_delite'},
     'set': {'taxi', 'air', 'boat', 'motobike', 'bikecircle'}
-           }
+    }
 print(my_dict['tuple'][-1])
 my_dict['list'].append('new_item')
 my_dict['list'].pop(1)
