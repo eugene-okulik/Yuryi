@@ -4,7 +4,7 @@ my_dict = {
     'dict': {'RU': 'Msk', 'KZ': 'Atyrau', 'KZ2': 'Almaty', 'TH': 'Sammui', 'for_delite': 'this_is_for_delite'},
     'set': {'taxi', 'air', 'boat', 'motobike', 'bikecircle'}
 }
-print(my_dict['tuple'][-1])git
+print(my_dict['tuple'][-1])
 my_dict['list'].append('new_item')
 my_dict['list'].pop(1)
 print(my_dict['list'])
