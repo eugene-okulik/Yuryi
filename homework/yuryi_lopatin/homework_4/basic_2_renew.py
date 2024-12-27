@@ -16,8 +16,6 @@ print('i am a tuple' in my_dict['dict'].keys())
 print('i am a tuple' in my_dict['dict'].values())
 print('New values' in my_dict['dict'].values())
 print(('i am a tuple','New values') in my_dict['dict'].items())
-for key, value in my_dict['dict'].items():
-	print(key, value)
 my_dict['set'].add('car')
 my_dict['set'].remove('bikecircle')
 print(my_dict['set'])
