@@ -9,7 +9,7 @@ print(my_dict['tuple'][-1])
 my_dict['list'].append('new_item')
 my_dict['list'].pop(1)
 print(my_dict['list'])
-my_dict['dict'][('i am a tuple',)] = 'New values'
+my_dict['dict']['i am a tuple',] = 'New values'
 my_dict['dict'].pop('for_delite')
 print(my_dict['dict'])
 print(('i am a tuple',) in my_dict['dict'].keys())
