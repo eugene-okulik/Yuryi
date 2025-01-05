@@ -7,9 +7,13 @@ str1 = 'результат операции: 42'
 str2 = 'результат операции: 514'
 str3 = 'результат работы программы: 9'
 
-num1 = (str1.index('42'))
-num2 = (str2.index('514'))
-num3 = (str3.index('9'))
+index1 = (str1.index(':'))
+index2 = (str2.index(':'))
+index3 = (str3.index(':'))
+
+num1 = (str1[20::])
+num2 = (str2[20::])
+num3 = (str3[28::])
 
 print(int(num1) + 10)
 print(int(num2) + 10)
