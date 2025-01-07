@@ -11,9 +11,9 @@ index1 = (str1.index(':'))
 index2 = (str2.index(':'))
 index3 = (str3.index(':'))
 
-num1 = (str1[20::])
-num2 = (str2[20::])
-num3 = (str3[28::])
+num1 = (str1[index1 + 1::])
+num2 = (str2[index2 + 1::])
+num3 = (str3[index3 + 1::])
 
 print(int(num1) + 10)
 print(int(num2) + 10)
