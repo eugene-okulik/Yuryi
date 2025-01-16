@@ -12,4 +12,3 @@ for word in words:
         main_word = word + 'ing'
     final_text.append(main_word)
 print(' '.join(final_text))
-
