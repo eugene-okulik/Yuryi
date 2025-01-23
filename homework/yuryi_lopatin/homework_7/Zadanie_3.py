@@ -1,15 +1,11 @@
-str1 = 'результат операции: 42'
-str2 = 'результат операции: 514'
-str3 = 'результат работы программы: 9'
+def process_string(s):
+    return int(s.split()[-1]) + 10
 
-list_from_str1 = str1.split(' ')
-list_from_str2 = str2.split(' ')
-list_from_str3 = str3.split(' ')
+strings = [
+    'результат операции: 42',
+    'результат операции: 514', 
+    'результат работы программы: 9'
+]
 
-numbers1 = list_from_str1[-1]
-numbers2 = list_from_str2[-1]
-numbers3 = list_from_str3[-1]
-
-print(int(numbers1) + 10)
-print(int(numbers2) + 10)
-print(int(numbers3) + 10)
+for s in strings:
+    print(process_string(s))

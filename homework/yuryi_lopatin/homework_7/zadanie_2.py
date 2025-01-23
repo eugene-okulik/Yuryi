@@ -1,10 +1,7 @@
-words = {'I': 3, 'love': 5, 'Python': 1, '!': 50}
+words = {'I': 3, 'love': 5, 'Python': 1, '!': 50} # Словарь с парами слово: количество
 
+def words_number(dictionary):
+    for word, num in dictionary.items():
+        print(f'{word * num}')
 
-def words_num(word, num):
-    print(f'{word*num}')
-
-
-words_num('I', 3)
-words_num('love', 5)
-words_num('!', 50)
+words_number(words)
