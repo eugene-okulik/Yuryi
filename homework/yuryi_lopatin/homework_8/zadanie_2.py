@@ -4,6 +4,7 @@ sys.set_int_max_str_digits(0)
 
 rng = [5, 200, 1000, 100000]
 
+
 def fibonacci(n, rng):
     fib1, fib2 = 0, 1
     count = 0
