@@ -1,5 +1,6 @@
 def process_string(s):
-    return int(s.split()[-1]) + 10
+    result = int(s.split()[-1]) + 10
+    return result
 
 
 strings = [
