@@ -19,5 +19,5 @@ for fib in fibonacci():
     if count in rng:
         print(fib)
         found_numbers += 1
-        if found_numbers==len(rng):
+        if found_numbers == len(rng):
             break
