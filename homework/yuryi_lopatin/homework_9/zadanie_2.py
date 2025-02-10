@@ -2,14 +2,16 @@ temperatures = [20, 15, 32, 34, 21, 19, 25, 27, 30, 32, 34, 30, 29, 25, 27, 22, 
                 30, 28, 24, 23]
 temperatures = set (temperatures)
 temperatures = list(temperatures)
+
+
 def many_28(x):
     if x > 28:
         return True
     else:
         return False
+
 hot_temperaturs = filter(many_28, temperatures)
 hot_list = list(hot_temperaturs)
-print(hot_list)
 print(max(hot_list))
 print(min(hot_list))
 all_elements_hot_list = (len(hot_list))

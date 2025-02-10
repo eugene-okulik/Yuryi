@@ -4,6 +4,7 @@ temperatures = set (temperatures)
 temperatures = list(temperatures)
 hot_temperaturs = filter(lambda x: x > 28, temperatures)
 hot_list = list(hot_temperaturs)
+
 print(max(hot_list))
 print(min(hot_list))
 all_elements_hot_list = (len(hot_list))
