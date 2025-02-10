@@ -1,0 +1,23 @@
+from Yuryi.homework.yuryi_lopatin.homework_9.zadanie_2_vihod_lambda import hot_list
+
+temperatures = [20, 15, 32, 34, 21, 19, 25, 27, 30, 32, 34, 30, 29, 25, 27, 22, 22, 23, 25, 29, 29, 31, 33, 31, 30, 32,
+                30, 28, 24, 23]
+print(type(temperatures))
+print(temperatures)
+print(len(temperatures))
+temperatures = set (temperatures)
+print(temperatures)
+temperatures = list(temperatures)
+print(temperatures)
+def many_28(x):
+    if x > 28:
+        return True
+    return False
+hot_temperaturs = filter(many_28, temperatures)
+hot_list = list(hot_temperaturs)
+print(hot_list)
+print(max(hot_list))
+print(min(hot_list))
+all_elements_hot_list = (len(hot_list))
+midle_temperature = sum(hot_list) / all_elements_hot_list
+print(midle_temperature)
