@@ -37,6 +37,7 @@ def one_more_func(*args):
 def example(text):
     print(text)
 
+
 simple1(count=2)
 simple2(count=2)
 calc(3, count=2)

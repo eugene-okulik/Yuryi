@@ -42,6 +42,7 @@ def one_more_func(*args):
 def example(text):
     print(text)
 
+
 simple1()
 simple2()
 print(print_nothong())
