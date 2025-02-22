@@ -7,6 +7,7 @@ def add_text_after_run(func):
 
     return wrapper
 
+
 @add_text_after_run
 def simple1():
     print('simple1')
@@ -16,21 +17,26 @@ def simple1():
 def simple2():
     print('simple2')
 
+
 @add_text_after_run
 def print_nothong():
     return 'hello'
+
 
 @add_text_after_run
 def calc(x):
     print(x * 2)
 
+
 @add_text_after_run
 def calc2(x, y):
     print(x * y)
 
+
 @add_text_after_run
 def one_more_func(*args):
     print(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
 
 @add_text_after_run
 def example(text):

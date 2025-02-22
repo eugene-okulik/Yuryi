@@ -7,25 +7,31 @@ def repeat_run(func):
 
     return wrapper
 
+
 @repeat_run
 def simple1():
     print('simple1')
+
 
 @repeat_run
 def simple2():
     print('simple2')
 
+
 @repeat_run
 def calc(x):
     print(x * 2)
+
 
 @repeat_run
 def calc2(x, y):
     print(x * y)
 
+
 @repeat_run
 def one_more_func(*args):
     print(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
 
 @repeat_run
 def example(text):

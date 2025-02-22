@@ -1,6 +1,7 @@
 first = int(input('Enter first number: '))
 second = int(input('Enter second number: '))
 
+
 def run_calc(func):
 
     def wrapper(first, second, operation):
@@ -8,6 +9,7 @@ def run_calc(func):
         return result
 
     return wrapper
+
 
 @run_calc
 def calc(first, second, operation):
@@ -21,5 +23,6 @@ def calc(first, second, operation):
         return first * second
     else:
         'Введены неверные значения'
+
 
 print(calc(first, second, '*'))
