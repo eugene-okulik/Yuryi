@@ -6,13 +6,14 @@ def run_calc(func):
 
     def wrapper(first, second, operation):
         if first < 0 or second < 0:
-            result = first * second
+            operation = '*'
         elif first == second:
-            result = first + second
+            operation = '+'
         elif first > second:
-            result = second - first
+            operation = '-'
         elif second > first:
-            result = first / second
+            operation = '/'
+        result = func(first, second, operation)
 
         return result
 
@@ -33,4 +34,4 @@ def calc(first, second, operation):
         return 'Введены неверные значения'
 
 
-print(calc(first, second, 'operation'))
+print(calc(first, second, 'введите число'))
