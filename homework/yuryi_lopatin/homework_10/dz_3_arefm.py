@@ -22,7 +22,6 @@ def run_calc(func):
 
 
 @run_calc
-
 def calc(first, second, operation):
     if operation == '*':
         return first * second
