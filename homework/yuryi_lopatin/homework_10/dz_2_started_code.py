@@ -1,7 +1,7 @@
 def repeat_run(func):
 
     def wrapper(*args, count=1):
-        for i in range(count):
+        for _ in range(count):
             result = func(*args)
         return result
 
