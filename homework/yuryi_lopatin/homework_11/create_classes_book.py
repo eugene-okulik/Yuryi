@@ -37,14 +37,15 @@ class SchoolBook(Book):
 
 matematika_5_class = SchoolBook('Matematika 5 class', 'Gipakra', 211, 'paper',
                                 'school book', True, 'Matematika', '5 class', True)
-geogerphy = SchoolBook('Geopraphy 7 class', 'Christophor Columb', 240, 'paper', 'school book', False, 'Matematika', '7 class', False)
+geogerphy = SchoolBook('Geopraphy 7 class', 'Columb', 240, 'paper',
+                       'school book', False, 'Geogerphy', '7 class', False)
 history = SchoolBook('History 3 class', 'Isac Son', 210, 'paper',
-                     'school book', False, 'Matematika', '9 class', False)
+                     'school book', False, 'History', '9 class', False)
 
 club_5_am = Book('Club_5_am', 'Robin Sharma', 511, 'paper', 'psyhology',
                  True)
 idiot = Book('Idiot', 'Dostoyevski', 640, 'paper', 'fiction', False)
-ispoved_huligana = Book('Ispoved Huligana', 'Esenin', 320, 'paper','poetry', False)
+ispoved_huligana = Book('Ispoved Huligana', 'Esenin', 320, 'paper', 'poetry', False)
 steve_jobs = Book('Steve Jobs', 'Issaacson', 610, 'paper', 'biography', False)
 cats_hause = Book('Steve Jobs', 'Issaacson', 610, 'paper', 'biography',
                   False)
