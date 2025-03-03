@@ -20,6 +20,7 @@ class Book():
             return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}, '
                     f'материал: {self.material}')
 
+
 class SchoolBook(Book):
     def __init__(self, title, author, pages, material, book_type, reserve, subject, school_class, homework):
         super().__init__(title, author, pages, material, book_type, reserve)
@@ -33,14 +34,17 @@ class SchoolBook(Book):
         else:
             return (f'Название: {self.title}, Автор: {self.author}, предмет: {self.subject}')
 
+
 matematika_5_class = SchoolBook('Matematika 5 class', 'Gipakra', 211, 'paper',
                                 'school book', True, 'Matematika', '5 class', True)
 geogerphy = SchoolBook('Geopraphy 7 class', 'Christophor Columb', 240, 'paper',
-                       'school book', False, 'Matematika', '7 class', False)
+                        'school book', False, 'Matematika', '7 class',
+                       False)
 history = SchoolBook('History 3 class', 'Isac Son', 210, 'paper',
-                     'school book',False, 'Matematika', '9 class', False)
+                     'school book', False, 'Matematika', '9 class', False)
 
-club_5_am = Book('Club_5_am', 'Robin Sharma', 511, 'paper', 'psyhology', True)
+club_5_am = Book('Club_5_am', 'Robin Sharma', 511, 'paper', 'psyhology',
+                 True)
 idiot = Book('Idiot', 'Dostoyevski', 640, 'paper', 'fiction', False)
 ispoved_huligana = Book('Ispoved Huligana', 'Esenin', 320, 'paper','poetry',
                        False)
