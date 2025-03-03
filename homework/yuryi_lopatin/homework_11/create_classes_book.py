@@ -37,8 +37,7 @@ class SchoolBook(Book):
 
 matematika_5_class = SchoolBook('Matematika 5 class', 'Gipakra', 211, 'paper',
                                 'school book', True, 'Matematika', '5 class', True)
-geogerphy = SchoolBook('Geopraphy 7 class', 'Christophor Columb', 240, 'paper',
-                        'school book', False, 'Matematika', '7 class', False)
+geogerphy = SchoolBook('Geopraphy 7 class', 'Christophor Columb', 240, 'paper', 'school book', False, 'Matematika', '7 class', False)
 history = SchoolBook('History 3 class', 'Isac Son', 210, 'paper',
                      'school book', False, 'Matematika', '9 class', False)
 
