@@ -33,5 +33,4 @@ def calc(first, second, operation):
     else:
         return 'Введены неверные значения'
 
-
 print(calc(first, second, 'введите число'))
