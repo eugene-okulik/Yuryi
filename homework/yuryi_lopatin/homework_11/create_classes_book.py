@@ -47,8 +47,7 @@ club_5_am = Book('Club_5_am', 'Robin Sharma', 511, 'paper', 'psyhology',
 idiot = Book('Idiot', 'Dostoyevski', 640, 'paper', 'fiction', False)
 ispoved_huligana = Book('Ispoved Huligana', 'Esenin', 320, 'paper', 'poetry', False)
 steve_jobs = Book('Steve Jobs', 'Issaacson', 610, 'paper', 'biography', False)
-cats_hause = Book('Steve Jobs', 'Issaacson', 610, 'paper', 'biography',
-                  False)
+cats_hause = Book('Cats Hause', 'Marshak', 42, 'paper', 'children book', False)
 
 print(matematika_5_class.__dict__)
 print(geogerphy.__dict__)
