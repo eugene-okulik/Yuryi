@@ -1,13 +1,14 @@
 class Book():
     have_text = True
 
-    def __init__(self, title, author, pages, material, book_type, reserve):
+    def __init__(self, title, author, pages, material, book_type, reserve, isbn_number=None):
         self.title = title
         self.author = author
         self.pages = pages
         self.material = material
         self.book_type = book_type
         self.reserve = reserve
+        self.isbn_number = isbn_number
 
     def isbn(self):
         return self.isbn_number
@@ -42,8 +43,7 @@ geogerphy = SchoolBook('Geopraphy 7 class', 'Columb', 240, 'paper',
 history = SchoolBook('History 3 class', 'Isac Son', 210, 'paper',
                      'school book', False, 'History', '9 class', False)
 
-club_5_am = Book('Club_5_am', 'Robin Sharma', 511, 'paper', 'psyhology',
-                 True)
+club_5_am = Book('Club_5_am', 'Robin Sharma', 511, 'paper', 'psyhology', True)
 idiot = Book('Idiot', 'Dostoyevski', 640, 'paper', 'fiction', False)
 ispoved_huligana = Book('Ispoved Huligana', 'Esenin', 320, 'paper', 'poetry', False)
 steve_jobs = Book('Steve Jobs', 'Issaacson', 610, 'paper', 'biography', False)
