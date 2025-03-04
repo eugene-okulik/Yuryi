@@ -9,7 +9,6 @@ class Book():
         self.book_type = book_type
         self.reserve = reserve
 
-
     def isbn(self):
         return self.isbn_number
 
