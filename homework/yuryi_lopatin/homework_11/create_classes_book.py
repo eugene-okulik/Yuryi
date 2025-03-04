@@ -1,13 +1,14 @@
 class Book():
     have_text = True
 
-    def __init__(self, title, author, pages, material, book_type, reserve):
+    def __init__(self, title, author, pages, material, book_type, reserve, isbn_number=None):
         self.title = title
         self.author = author
         self.pages = pages
         self.material = material
         self.book_type = book_type
         self.reserve = reserve
+
 
     def isbn(self):
         return self.isbn_number
