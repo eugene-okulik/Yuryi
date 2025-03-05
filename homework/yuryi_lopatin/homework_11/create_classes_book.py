@@ -1,59 +1,50 @@
 class Book():
     have_text = True
 
-    def __init__(self, title, author, pages, material, book_type, reserve, isbn_number=None):
+    def __init__(self, title, author, pages, material, reserve):
         self.title = title
         self.author = author
         self.pages = pages
         self.material = material
-        self.book_type = book_type
         self.reserve = reserve
-        self.isbn_number = isbn_number
-
-    def isbn(self):
-        return self.isbn_number
 
     def print(self):
         if self.reserve:
-            return (f'Название: {self.title}, Автор: {self.author}, страниц {self.pages}:, '
-                    f'материал: {self.material}, зарезервирована')
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}:, материал: {self.material} зарезервирована')
         else:
-            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}, '
-                    f'материал: {self.material}')
-
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}, материал: {self.material}')
 
 class SchoolBook(Book):
-    def __init__(self, title, author, pages, material, book_type, reserve, subject, school_class, homework):
-        super().__init__(title, author, pages, material, book_type, reserve)
+    def __init__(self, title, author, pages, book_type, reserve, subject, school_class, homework):
+        super().__init__(title, author, pages, book_type, reserve)
         self.subject = subject
         self.school_class = school_class
         self.homework = homework
 
     def print(self):
         if self.homework:
-            return (f'Название: {self.title}, Автор: {self.author}, предмет: {self.subject}, зарезервирована')
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}, предмет: {self.subject}, '
+                    f'класс: {self.school_class}, зарезервирована')
         else:
-            return (f'Название: {self.title}, Автор: {self.author}, предмет: {self.subject}')
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}, предмет: {self.subject}, класс: {self.school_class}')
 
+matematika_5_class = SchoolBook('Математика', 'Евклид', 211, 'school book', True, 'математика', 5, True)
+geography = SchoolBook('География', 'Колумб', 240, 'school book', False, 'география', 7, False)
+history = SchoolBook('История', 'Герадот', 210, 'school book',False, 'история', 9, False)
 
-matematika_5_class = SchoolBook('Matematika 5 class', 'Gipakra', 211, 'paper',
-                                'school book', True, 'Matematika', '5 class', True)
-geogerphy = SchoolBook('Geopraphy 7 class', 'Columb', 240, 'paper',
-                       'school book', False, 'Geogerphy', '7 class', False)
-history = SchoolBook('History 3 class', 'Isac Son', 210, 'paper',
-                     'school book', False, 'History', '9 class', False)
+club_5_am = Book('Клуб 5 утра', 'Шарма', 511, 'бумага', True)
+idiot = Book('Идиот', 'Достоевский', 640, 'бумага', False)
+ispoved_huligana = Book('Исповедь хулигана', 'Есенин', 320, 'бумага',
+                       False)
+steve_jobs = Book('Стив Джобс', 'Исаксон', 610, 'бумага',
+                  False)
+cats_hause = Book('Кошкин дом', 'Маршак', 42, 'бумага', False)
 
-club_5_am = Book('Club_5_am', 'Robin Sharma', 511, 'paper', 'psyhology', True)
-idiot = Book('Idiot', 'Dostoyevski', 640, 'paper', 'fiction', False)
-ispoved_huligana = Book('Ispoved Huligana', 'Esenin', 320, 'paper', 'poetry', False)
-steve_jobs = Book('Steve Jobs', 'Issaacson', 610, 'paper', 'biography', False)
-cats_hause = Book('Cats Hause', 'Marshak', 42, 'paper', 'children book', False)
-
-print(matematika_5_class.__dict__)
-print(geogerphy.__dict__)
-print(history.__dict__)
-print(club_5_am.__dict__)
-print(idiot.__dict__)
-print(ispoved_huligana.__dict__)
-print(steve_jobs.__dict__)
-print(cats_hause.__dict__)
+print(matematika_5_class.print())
+print(geography.print())
+print(history.print())
+print(club_5_am.print())
+print(idiot.print())
+print(ispoved_huligana.print())
+print(steve_jobs.print())
+print(cats_hause.print())
