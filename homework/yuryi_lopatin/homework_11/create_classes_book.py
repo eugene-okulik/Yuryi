@@ -1,23 +1,18 @@
-
 class Book():
-    material = 'paper'
     have_text = True
 
-    def __init__(self, title, author, pages, book_type, reserve):
+    def __init__(self, title, author, pages, material, reserve):
         self.title = title
         self.author = author
         self.pages = pages
-        self.book_type = book_type
+        self.material = material
         self.reserve = reserve
-
-    def isbn(self):
-        return self.isbn_number
 
     def print(self):
         if self.reserve:
-            return (f'Название: {self.title}, Автор: {self.author}, страниц {self.pages}:, зарезервирована')
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}:, материал: {self.material} зарезервирована')
         else:
-            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}')
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}, материал: {self.material}')
 
 class SchoolBook(Book):
     def __init__(self, title, author, pages, book_type, reserve, subject, school_class, homework):
@@ -28,27 +23,28 @@ class SchoolBook(Book):
 
     def print(self):
         if self.homework:
-            return (f'Название: {self.title}, Автор: {self.author}, предмет: {self.subject}, зарезервирована')
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}, предмет: {self.subject}, '
+                    f'класс: {self.school_class}, зарезервирована')
         else:
-            return (f'Название: {self.title}, Автор: {self.author}, предмет: {self.subject}')
+            return (f'Название: {self.title}, Автор: {self.author}, страниц: {self.pages}, предмет: {self.subject}, класс: {self.school_class}')
 
-matematika_5_class = SchoolBook('Matematika 5 class', 'Gipakra', 211, 'school book', True, 'Matematika', '5 class', True)
-geogerphy = SchoolBook('Geopraphy 7 class', 'Christophor Columb', 240, 'school book', False, 'Matematika', '7 class', False)
-history = SchoolBook('History 3 class', 'Isac Son', 210, 'school book',False, 'Matematika', '9 class', False)
+matematika_5_class = SchoolBook('Математика', 'Евклид', 211, 'school book', True, 'математика', 5, True)
+geography = SchoolBook('География', 'Колумб', 240, 'school book', False, 'география', 7, False)
+history = SchoolBook('История', 'Герадот', 210, 'school book',False, 'история', 9, False)
 
-club_5_am = Book('Club_5_am', 'Robin Sharma', 511, 'psyhology', True)
-idiot = Book('Idiot', 'Dostoyevski', 640, 'fiction', False)
-ispoved_huligana = Book('Ispoved Huligana', 'Esenin', 320, 'poetry',
+club_5_am = Book('Клуб 5 утра', 'Шарма', 511, 'бумага', True)
+idiot = Book('Идиот', 'Достоевский', 640, 'бумага', False)
+ispoved_huligana = Book('Исповедь хулигана', 'Есенин', 320, 'бумага',
                        False)
-steve_jobs = Book('Steve Jobs', 'Issaacson', 610, 'biography',
+steve_jobs = Book('Стив Джобс', 'Исаксон', 610, 'бумага',
                   False)
-cats_hause = Book('Steve Jobs', 'Issaacson', 42, 'biography', False)
+cats_hause = Book('Кошкин дом', 'Маршак', 42, 'бумага', False)
 
-print(matematika_5_class.__dict__)
-print(geogerphy.__dict__)
-print(history.__dict__)
-print(club_5_am.__dict__)
-print(idiot.__dict__)
-print(ispoved_huligana.__dict__)
-print(steve_jobs.__dict__)
-print(cats_hause.__dict__)
+print(matematika_5_class.print())
+print(geography.print())
+print(history.print())
+print(club_5_am.print())
+print(idiot.print())
+print(ispoved_huligana.print())
+print(steve_jobs.print())
+print(cats_hause.print())
