@@ -38,10 +38,8 @@ history = SchoolBook('История', 'Герадот', 210, 'school book', Fal
 
 club_5_am = Book('Клуб 5 утра', 'Шарма', 511, 'бумага', True)
 idiot = Book('Идиот', 'Достоевский', 640, 'бумага', False)
-ispoved_huligana = Book('Исповедь хулигана', 'Есенин', 320, 'бумага',
-                       False)
-steve_jobs = Book('Стив Джобс', 'Исаксон', 610, 'бумага',
-                  False)
+ispoved_huligana = Book('Исповедь хулигана', 'Есенин', 320, 'бумага', False)
+steve_jobs = Book('Стив Джобс', 'Исаксон', 610, 'бумага', False)
 cats_hause = Book('Кошкин дом', 'Маршак', 42, 'бумага', False)
 
 print(matematika_5_class.print())
