@@ -53,7 +53,7 @@ garden_roses = Garden('Rose', 'Rus', 'Red', 100, 1, True, True,
 garden_lilia = Garden('Lilia', 'Columbia', 'White', 150, 1, False,
                       False, True, True)
 garden_hrisantema = Garden('Hrisantema', 'Iran', 'Yelow', 50, 2, True,
-                            False, False, False)
+                           False, False, False)
 
 bush_roses = Flowers('Bush_Rose', 'Rus', 'pink', 200, 3, True)
 romashka = Flowers('Romashka', 'Spanish', 'White', 300, 4, True)
