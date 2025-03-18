@@ -26,16 +26,17 @@ class Garden(Flowers):
             return (f'Название: {self.name_flower}, Страна: {self.made_in}, Цвет: {self.color}, Цена: {self.price}, '
                     f'Свежесть: {self.life_day}')
 
+
 class Buqet(Flowers):
 
-    def __init__(self, name_buqet = 'Букет', price = 0):
+    def __init__(self, name_buqet='Букет', price=0):
         self.name_buqet = name_buqet
         self.flowers = []
         self.life_days = 0
         self.price = price
 
     def add_flower(self, flower):
-            self.flowers.append(flower)
+        self.flowers.append(flower)
 
     def total_price(self):
         return sum(flower.price for flower in self.flowers)
@@ -51,7 +52,7 @@ garden_roses = Garden('Rose', 'Rus', 'Red', 100, 1, True, True,
                       False, False)
 garden_lilia = Garden('Lilia', 'Columbia', 'White', 150, 1, False,
                       False, True, True)
-garden_Hrisantema = Garden ('Hrisantema', 'Iran', 'Yelow', 50, 2, True,
+garden_hrisantema = Garden('Hrisantema', 'Iran', 'Yelow', 50, 2, True,
                             False, False, False)
 
 bush_roses = Flowers('Bush_Rose', 'Rus', 'pink', 200, 3, True)
@@ -71,4 +72,4 @@ print(f'Свежесть: {buqet.avg_life_day()}')
 
 print(garden_roses.print())
 print(garden_lilia.print())
-print(garden_Hrisantema.print())
+print(garden_hrisantema.print())
