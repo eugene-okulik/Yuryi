@@ -79,8 +79,8 @@ garden_roses = Garden('Rose', 'Rus', 'Red', 100, 1, True, 14,
                       False, False, poison=False)
 garden_lilia = Garden('Lilia', 'Columbia', 'White', 150, 1, True,
                       20, True, True, poison=True)
-garden_Hrisantema = Garden('Hrisantema', 'Iran', 'Yelow', 50, 2, True,
-                            18, False, False, poison=False)
+garden_Hrisantema = Garden('Hrisantema', 'Iran', 'Yelow', 50, 2, True, 18,
+                           False, False, poison=False)
 
 bush_roses = Flowers('Bush_Rose', 'Rus', 'pink', 200, 3, True, 15)
 romashka = Flowers('Romashka', 'Spanish', 'White', 300, 4, True, 13)
