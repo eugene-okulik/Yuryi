@@ -49,10 +49,10 @@ class Buqet(Flowers):
         return total_life_day / len(self.flowers)
 
     def sort_by_freshness(self):
-        self.flowers.sort(key=lambda flower:flower.life_day, reverse=True)
+        self.flowers.sort(key=lambda flower: flower.life_day, reverse=True)
 
     def sort_by_price(self):
-        self.flowers.sort(key=lambda flower:flower.price, reverse=True)
+        self.flowers.sort(key=lambda flower: flower.price, reverse=True)
 
     def search_by_life_day(self, min_days, max_days):
         result = [flower for flower in self.flowers if min_days <= flower.life_day <= max_days]
@@ -74,6 +74,7 @@ class Buqet(Flowers):
         result = [flower for flower in self.flowers if min_stem_length <= flower.stem_length <= max_stem_length]
         return result
 
+
 garden_roses = Garden('Rose', 'Rus', 'Red', 100, 1, True, 14,
                       False, False, poison=False)
 garden_lilia = Garden('Lilia', 'Columbia', 'White', 150, 1, True,
@@ -83,7 +84,7 @@ garden_Hrisantema = Garden ('Hrisantema', 'Iran', 'Yelow', 50, 2, True,
 
 bush_roses = Flowers('Bush_Rose', 'Rus', 'pink', 200, 3, True, 15)
 romashka = Flowers('Romashka', 'Spanish', 'White', 300, 4, True, 13)
-franzhepania = Flowers('Franzhepania', 'Thailand', 'White', 350, 1, False,10)
+franzhepania = Flowers('Franzhepania', 'Thailand', 'White', 350, 1, False, 10)
 stevia = Flowers('Stevia', 'Iran', 'White', 25, 5, False, 12)
 cactus = Flowers('Cactus', 'Iran', 'Red', 400, 6, False,9)
 
