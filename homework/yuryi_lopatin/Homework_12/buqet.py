@@ -27,16 +27,17 @@ class Garden(Flowers):
             return (f'Название: {self.name}, Страна: {self.made_in}, Цвет: {self.color}, Цена: {self.price}, '
                     f'Свежесть: {self.life_day}, Длинна стебля: {self.stem_length}')
 
+
 class Buqet(Flowers):
 
-    def __init__(self, name_buqet = 'Букет', price = 0):
+    def __init__(self, name_buqet='Букет', price=0):
         self.name_buqet = name_buqet
         self.flowers = []
         self.life_days = 0
         self.price = price
 
     def add_flower(self, flower):
-            self.flowers.append(flower)
+        self.flowers.append(flower)
 
     def total_price(self):
         return sum(flower.price for flower in self.flowers)
@@ -73,12 +74,6 @@ class Buqet(Flowers):
         result = [flower for flower in self.flowers if min_stem_length <= flower.stem_length <= max_stem_length]
         return result
 
-
-
-
-
-
-
 garden_roses = Garden('Rose', 'Rus', 'Red', 100, 1, True, 14,
                       False, False, poison=False)
 garden_lilia = Garden('Lilia', 'Columbia', 'White', 150, 1, True,
@@ -91,7 +86,6 @@ romashka = Flowers('Romashka', 'Spanish', 'White', 300, 4, True, 13)
 franzhepania = Flowers('Franzhepania', 'Thailand', 'White', 350, 1, False,10)
 stevia = Flowers('Stevia', 'Iran', 'White', 25, 5, False, 12)
 cactus = Flowers('Cactus', 'Iran', 'Red', 400, 6, False,9)
-
 
 buqet = Buqet()
 buqet.add_flower(garden_roses)
