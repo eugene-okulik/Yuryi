@@ -79,14 +79,14 @@ garden_roses = Garden('Rose', 'Rus', 'Red', 100, 1, True, 14,
                       False, False, poison=False)
 garden_lilia = Garden('Lilia', 'Columbia', 'White', 150, 1, True,
                       20, True, True, poison=True)
-garden_Hrisantema = Garden ('Hrisantema', 'Iran', 'Yelow', 50, 2, True,
+garden_Hrisantema = Garden('Hrisantema', 'Iran', 'Yelow', 50, 2, True,
                             18, False, False, poison=False)
 
 bush_roses = Flowers('Bush_Rose', 'Rus', 'pink', 200, 3, True, 15)
 romashka = Flowers('Romashka', 'Spanish', 'White', 300, 4, True, 13)
 franzhepania = Flowers('Franzhepania', 'Thailand', 'White', 350, 1, False, 10)
 stevia = Flowers('Stevia', 'Iran', 'White', 25, 5, False, 12)
-cactus = Flowers('Cactus', 'Iran', 'Red', 400, 6, False,9)
+cactus = Flowers('Cactus', 'Iran', 'Red', 400, 6, False, 9)
 
 buqet = Buqet()
 buqet.add_flower(garden_roses)
