@@ -48,7 +48,7 @@ class Bouquet():
         total_life_day = sum(flower.life_day for flower in self.flowers)
         return total_life_day / len(self.flowers)
 
-    def sort_by(self, key, reverse = False):
+    def sort_by(self, key, reverse=False):
         self.flowers.sort(key=lambda flower: getattr(flower, key), reverse=reverse)
 
     def search_by_life_day(self, min_days, max_days):
@@ -93,4 +93,3 @@ print(f'Свежесть: {bouquet.avg_life_day()}')
 print(garden_roses.print())
 print(garden_lilia.print())
 print(garden_Hrisantema.print())
-
