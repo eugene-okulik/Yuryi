@@ -1,4 +1,4 @@
-class Flowers():
+class Flower():
     have_flower = True
 
     def __init__(self, name, made_in, color, price, life_day, reserve, stem_length):
@@ -11,7 +11,7 @@ class Flowers():
         self.stem_length = stem_length
 
 
-class Garden(Flowers):
+class Garden(Flower):
 
     def __init__(self, name, made_in, color, price, life_day, reserve, stem_length, ships, wild, poison):
         super().__init__(name, made_in, color, price, life_day, reserve, stem_length)
@@ -22,16 +22,16 @@ class Garden(Flowers):
     def print(self):
         if self.ships:
             return (f'Название: {self.name}, Страна: {self.made_in}, Цвет: {self.color}, Цена: {self.price}, '
-                    f'Свежесть: {self.life_day}, Длинна стебля: {self.stem_length} В букет: {self.reserve}')
+                    f'Свежесть: {self.life_day}, Длина стебля: {self.stem_length} В букет: {self.reserve}')
         else:
             return (f'Название: {self.name}, Страна: {self.made_in}, Цвет: {self.color}, Цена: {self.price}, '
-                    f'Свежесть: {self.life_day}, Длинна стебля: {self.stem_length}')
+                    f'Свежесть: {self.life_day}, Длина стебля: {self.stem_length}')
 
 
-class Buqet(Flowers):
+class Bouquet():
 
-    def __init__(self, name_buqet='Букет', price=0):
-        self.name_buqet = name_buqet
+    def __init__(self, name_bouquet='Букет', price=0):
+        self.name_bouquet = name_bouquet
         self.flowers = []
         self.life_days = 0
         self.price = price
@@ -48,11 +48,8 @@ class Buqet(Flowers):
         total_life_day = sum(flower.life_day for flower in self.flowers)
         return total_life_day / len(self.flowers)
 
-    def sort_by_freshness(self):
-        self.flowers.sort(key=lambda flower: flower.life_day, reverse=True)
-
-    def sort_by_price(self):
-        self.flowers.sort(key=lambda flower: flower.price, reverse=True)
+    def sort_by(self, key, reverse = False):
+        self.flowers.sort(key=lambda flower: getattr(flower, key), reverse=reverse)
 
     def search_by_life_day(self, min_days, max_days):
         result = [flower for flower in self.flowers if min_days <= flower.life_day <= max_days]
@@ -70,10 +67,6 @@ class Buqet(Flowers):
         result = [flower for flower in self.flowers if flower.name.lower() == name.lower()]
         return result
 
-    def sort_stem_length(self, min_stem_length, max_stem_length):
-        result = [flower for flower in self.flowers if min_stem_length <= flower.stem_length <= max_stem_length]
-        return result
-
 
 garden_roses = Garden('Rose', 'Rus', 'Red', 100, 1, True, 14,
                       False, False, poison=False)
@@ -82,21 +75,22 @@ garden_lilia = Garden('Lilia', 'Columbia', 'White', 150, 1, True,
 garden_Hrisantema = Garden('Hrisantema', 'Iran', 'Yelow', 50, 2, True, 18,
                            False, False, poison=False)
 
-bush_roses = Flowers('Bush_Rose', 'Rus', 'pink', 200, 3, True, 15)
-romashka = Flowers('Romashka', 'Spanish', 'White', 300, 4, True, 13)
-franzhepania = Flowers('Franzhepania', 'Thailand', 'White', 350, 1, False, 10)
-stevia = Flowers('Stevia', 'Iran', 'White', 25, 5, False, 12)
-cactus = Flowers('Cactus', 'Iran', 'Red', 400, 6, False, 9)
+bush_roses = Flower('Bush_Rose', 'Rus', 'pink', 200, 3, True, 15)
+romashka = Flower('Romashka', 'Spanish', 'White', 300, 4, True, 13)
+franzhepania = Flower('Franzhepania', 'Thailand', 'White', 350, 1, False, 10)
+stevia = Flower('Stevia', 'Iran', 'White', 25, 5, False, 12)
+cactus = Flower('Cactus', 'Iran', 'Red', 400, 6, False, 9)
 
-buqet = Buqet()
-buqet.add_flower(garden_roses)
-buqet.add_flower(bush_roses)
-buqet.add_flower(romashka)
+bouquet = Bouquet()
+bouquet.add_flower(garden_roses)
+bouquet.add_flower(bush_roses)
+bouquet.add_flower(romashka)
 
-print(f'букет из {len(buqet.flowers)} цветов')
-print(f'Общая стоимость: {buqet.total_price()}')
-print(f'Свежесть: {buqet.avg_life_day()}')
+print(f'букет из {len(bouquet.flowers)} цветов')
+print(f'Общая стоимость: {bouquet.total_price()}')
+print(f'Свежесть: {bouquet.avg_life_day()}')
 
 print(garden_roses.print())
 print(garden_lilia.print())
 print(garden_Hrisantema.print())
+
