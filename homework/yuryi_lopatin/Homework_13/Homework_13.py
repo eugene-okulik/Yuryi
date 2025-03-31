@@ -1,5 +1,4 @@
 import os
-import datetime
 from datetime import timedelta
 from datetime import datetime
 from os.path import split
@@ -11,11 +10,11 @@ with open(file_path, 'r', encoding='utf8') as file:
 
 date_string1 = lines[0].split(' - ')[0].split('. ')[1]
 date_obj1 = datetime.strptime(date_string1, '%Y-%m-%d %H:%M:%S.%f')
-print(date_obj1 + timedelta(days = 7))
+print(date_obj1 + timedelta(days=7))
 
 date_string2 = lines[1].split(' - ')[0].split('. ')[1]
 date_obj2 = datetime.strptime(date_string2, '%Y-%m-%d %H:%M:%S.%f')
-day_weekdays = ['понедельник','вторник','среда','четверг','пятница','суббота','воскресенье']
+day_weekdays = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье']
 day_weekdays = day_weekdays[date_obj2.weekday()]
 print(f'{date_string2} - это {day_weekdays}')
 
