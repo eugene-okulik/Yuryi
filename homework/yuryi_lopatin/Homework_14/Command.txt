@@ -1,0 +1,27 @@
+-- Все оценки студента
+SELECT value
+FROM marks
+WHERE student_id = 20080;
+
+-- Все книги, которые находятся у студента
+SELECT title
+FROM books
+WHERE taken_by_student_id = 20080;
+
+-- Для студента вывести всё, что о нем есть в базе: группа, книги, оценки с названиями занятий и предметов (всё одним запросом с использованием Join)
+SELECT 
+    *
+FROM 
+    students s
+LEFT JOIN 
+    `groups` g ON s.group_id = g.id
+LEFT JOIN 
+    books b ON b.taken_by_student_id = s.id
+LEFT JOIN 
+    marks m ON m.student_id = s.id
+LEFT JOIN 
+    lessons l ON m.lesson_id = l.id
+LEFT JOIN 
+    subjets subj ON l.subject_id = subj.id
+WHERE 
+    s.id = 20080
