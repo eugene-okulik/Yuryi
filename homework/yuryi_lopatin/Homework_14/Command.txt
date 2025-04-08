@@ -1,3 +1,17 @@
+-- Команды для добавления сущностей
+Insert into `groups` (title, start_date, end_date) VALUES ('drummers', '1 september', '1_august')
+Insert into students (name, second_name, group_id) VALUES ('Yuryi', 'Lo', 4907)
+Insert into subjets (title) VALUES ('solfejio')
+Insert into subjets (title) VALUES ('rythm solfejio')
+Insert into lessons (title, subject_id) VALUES ('swing', 10053)
+Insert into lessons (title, subject_id) VALUES ('shafle', 10053)
+Insert into lessons (title, subject_id) VALUES ('solfejio', 10054)
+Insert into lessons (title, subject_id) VALUES ('garmonia', 10054)
+Insert into marks (value, lesson_id, student_id) VALUES (5, 9412, 20080)
+Insert into marks (value, lesson_id, student_id) VALUES (3, 9413, 20080)
+Insert into marks (value, lesson_id, student_id) VALUES (4, 9414, 20080)
+Insert into marks (value, lesson_id, student_id) VALUES (5, 9415, 20080)
+
 -- Все оценки студента
 SELECT value
 FROM marks
