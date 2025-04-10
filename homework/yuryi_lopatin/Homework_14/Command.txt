@@ -1,0 +1,41 @@
+-- Команды для добавления сущностей
+Insert into students (name, second_name, group_id) VALUES ('Yuryi', 'Lo', 4907);
+Insert into `groups` (title, start_date, end_date) VALUES ('drummers', '1 september', '1_august');
+Insert into subjets (title) VALUES ('solfejio');
+Insert into subjets (title) VALUES ('rythm solfejio');
+Insert into lessons (title, subject_id) VALUES ('swing', 10053);
+Insert into lessons (title, subject_id) VALUES ('shafle', 10053);
+Insert into lessons (title, subject_id) VALUES ('solfejio', 10054);
+Insert into lessons (title, subject_id) VALUES ('garmonia', 10054);
+Insert into marks (value, lesson_id, student_id) VALUES (5, 9412, 20080);
+Insert into marks (value, lesson_id, student_id) VALUES (3, 9413, 20080);
+Insert into marks (value, lesson_id, student_id) VALUES (4, 9414, 20080);
+Insert into marks (value, lesson_id, student_id) VALUES (5, 9415, 20080);
+
+-- Все оценки студента
+SELECT value
+FROM marks
+WHERE student_id = 20080;
+
+-- Все книги, которые находятся у студента
+SELECT title
+FROM books
+WHERE taken_by_student_id = 20080;
+
+-- Для студента вывести всё, что о нем есть в базе: группа, книги, оценки с названиями занятий и предметов (всё одним запросом с использованием Join)
+SELECT 
+    *
+FROM 
+    students s
+LEFT JOIN 
+    `groups` g ON s.group_id = g.id
+LEFT JOIN 
+    books b ON b.taken_by_student_id = s.id
+LEFT JOIN 
+    marks m ON m.student_id = s.id
+LEFT JOIN 
+    lessons l ON m.lesson_id = l.id
+LEFT JOIN 
+    subjets subj ON l.subject_id = subj.id
+WHERE 
+    s.id = 20080
