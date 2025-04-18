@@ -55,9 +55,8 @@ def get_student_data(student_id):
 
             subj.id AS subject_id,
             subj.title AS subject_title
-            
         FROM students s
-        LEFT JOIN `groups` g ON s.group_id = g.id 
+        LEFT JOIN `groups` g ON s.group_id = g.id
         LEFT JOIN books b ON b.taken_by_student_id = s.id
         LEFT JOIN marks m ON m.student_id = s.id
         LEFT JOIN lessons l ON m.lesson_id = l.id
