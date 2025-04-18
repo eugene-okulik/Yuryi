@@ -11,6 +11,7 @@ db = mysql.connect(
 
 cursor = db.cursor(dictionary=True)
 
+
 def get_student_data(student_id):
     # Запрос оценок
     cursor.execute('SELECT value FROM marks WHERE student_id = %s', (student_id,))
@@ -54,7 +55,8 @@ def get_student_data(student_id):
 
             subj.id AS subject_id,
             subj.title AS subject_title
-        FROM students s 
+            
+        FROM students s
         LEFT JOIN `groups` g ON s.group_id = g.id 
         LEFT JOIN books b ON b.taken_by_student_id = s.id
         LEFT JOIN marks m ON m.student_id = s.id
@@ -93,6 +95,7 @@ def get_student_data(student_id):
         print(f"Id предмета: {row['subject_id']}")
         print(f"Название предмета: {row['subject_title']}")
         print("---------------------------------")
+
 
 student_id = 20198
 get_student_data(student_id)
