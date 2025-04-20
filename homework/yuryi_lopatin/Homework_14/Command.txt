@@ -1,4 +1,11 @@
 -- Команды для добавления и изменения сущностей
+
+
+query = ‘INSERT INTO students (name, surname) VALUES (%s, %s)’
+values = (‘Vasia’, ‘Pupkin’)
+cursor.execute(query, values)
+
+
 Insert into students (name, second_name, group_id) VALUES ('Yuryi', 'Lo', NULL);
 INSERT INTO books (title, taken_by_student_id) VALUES ('Jim Chapin', 20198);
 INSERT INTO books (title, taken_by_student_id) VALUES ('Erick Lapton', 20198);
