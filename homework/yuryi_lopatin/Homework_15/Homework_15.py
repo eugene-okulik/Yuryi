@@ -11,6 +11,145 @@ db = mysql.connect(
 
 cursor = db.cursor(dictionary=True)
 
+#create student
+query = "INSERT INTO students (name, second_name, group_id) VALUES (%s, %s, %s)"
+values = ('Yuryl', 'Lo', None)
+cursor.execute(query, values)
+student_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM students WHERE id = {student_id}')
+print(cursor.fetchone())
+
+#create group
+query = "INSERT INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)"
+values = ('drummers', '1 september', '1_august')
+cursor.execute(query, values)
+group_id = cursor.lastrowid
+
+#put student in group
+query = f"UPDATE students SET group_id = {group_id} WHERE id = {student_id}"
+cursor.execute(query)
+cursor.execute(f'SELECT * FROM students WHERE id = {student_id}')
+print(cursor.fetchone())
+
+#create book1 for student
+query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
+values = ('Jim Chapin', student_id)
+cursor.execute(query, values)
+book_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM books WHERE id = {book_id}')
+print(cursor.fetchone())
+
+#create book2 for student
+query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
+values = ('Erick Lapton', student_id)
+cursor.execute(query, values)
+book2_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM books WHERE id = {book2_id}')
+print(cursor.fetchone())
+
+#create book3 for student
+query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
+values = ('Shafl', student_id)
+cursor.execute(query, values)
+book3_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM books WHERE id = {book3_id}')
+print(cursor.fetchone())
+
+#create book4 for student
+query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
+values = ('Kononol', student_id)
+cursor.execute(query, values)
+book4_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM books WHERE id = {book4_id}')
+print(cursor.fetchone())
+
+#create book5 for student
+query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
+values = ('Stick control', student_id)
+cursor.execute(query, values)
+book5_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM books WHERE id = {book5_id}')
+print(cursor.fetchone())
+
+#create subject1
+query = "INSERT INTO subjets (title) VALUES ('solfejio')"
+cursor.execute(query)
+subject1_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM subjets WHERE id = {subject1_id}')
+print(cursor.fetchone())
+
+#create subject2
+query = "INSERT INTO subjets (title) VALUES ('Rhytm solfejio')"
+cursor.execute(query)
+subject2_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM subjets WHERE id = {subject2_id}')
+print(cursor.fetchone())
+
+#create lessons1
+query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
+values = ('swing', subject1_id)
+cursor.execute(query, values)
+lesson1_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM lessons WHERE id = {lesson1_id}')
+print(cursor.fetchone())
+
+#create lessons2
+query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
+values = ('shafle', subject1_id)
+cursor.execute(query, values)
+lesson2_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM lessons WHERE id = {lesson2_id}')
+print(cursor.fetchone())
+
+#create lessons3
+query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
+values = ('solfejio', subject2_id)
+cursor.execute(query, values)
+lesson3_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM lessons WHERE id = {lesson3_id}')
+print(cursor.fetchone())
+
+#create lessons4
+query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
+values = ('garmonia', subject2_id)
+cursor.execute(query, values)
+lesson4_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM lessons WHERE id = {lesson4_id}')
+print(cursor.fetchone())
+
+#mark1 for student
+query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+values = (5,lesson1_id, student_id)
+cursor.execute(query, values)
+mark1_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM lessons WHERE id = {mark1_id}')
+print(cursor.fetchone())
+
+#mark2 for student
+query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+values = (4,lesson2_id, student_id)
+cursor.execute(query, values)
+mark2_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM lessons WHERE id = {mark2_id}')
+print(cursor.fetchone())
+
+#mark3 for student
+query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+values = (3,lesson3_id, student_id)
+cursor.execute(query, values)
+mark3_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM lessons WHERE id = {mark3_id}')
+print(cursor.fetchone())
+
+#mark4 for student
+query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+values = (4,lesson4_id, student_id)
+cursor.execute(query, values)
+mark4_id = cursor.lastrowid
+cursor.execute(f'SELECT * FROM lessons WHERE id = {mark4_id}')
+print(cursor.fetchone())
+
+db.commit()
 
 def get_student_data(student_id):
     # Запрос оценок
@@ -98,5 +237,9 @@ def get_student_data(student_id):
 
 student_id = 20198
 get_student_data(student_id)
+
+cursor.execute("INSERT INTO students (name, second_name, group_id) VALUES ('Yuryi', 'Lo', NULL)")
+cursor.execute("INSERT INTO students (name, second_name, group_id) VALUES ('Olga', 'Zem', NULL)")
+cursor.execute("INSERT INTO students (name, second_name, group_id) VALUES ('Yura', 'Li', NULL)")
 
 db.close()
