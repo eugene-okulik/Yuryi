@@ -125,6 +125,7 @@ mark4_id = cursor.lastrowid
 
 db.commit()
 
+
 def get_student_data(student_id):
 
     # Запрос оценок
