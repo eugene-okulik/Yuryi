@@ -104,29 +104,29 @@ cursor.execute(f'SELECT * FROM lessons WHERE id = {lesson4_id}')
 print(cursor.fetchone())
 
 query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (5,lesson1_id, student_id)
+values = (5, lesson1_id, student_id)
 cursor.execute(query, values)
 mark1_id = cursor.lastrowid
 
 query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (4,lesson2_id, student_id)
+values = (4, lesson2_id, student_id)
 cursor.execute(query, values)
 mark2_id = cursor.lastrowid
 
 query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (3,lesson3_id, student_id)
+values = (3, lesson3_id, student_id)
 cursor.execute(query, values)
 mark3_id = cursor.lastrowid
 
-#mark4 for student
 query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (4,lesson4_id, student_id)
+values = (4, lesson4_id, student_id)
 cursor.execute(query, values)
 mark4_id = cursor.lastrowid
 
 db.commit()
 
 def get_student_data(student_id):
+
     # Запрос оценок
     cursor.execute('SELECT value FROM marks WHERE student_id = %s', (student_id,))
     marks_data = cursor.fetchall()
