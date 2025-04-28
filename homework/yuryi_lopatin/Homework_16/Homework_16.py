@@ -24,8 +24,7 @@ with open(eugene_ok_path, 'r', encoding='utf8', newline='') as csv_file:
     headers = next(file_data)  # Если закоментить, выдаст заголовки (имя, фамилия, груп ид и т.)
     data = []
     for row in file_data:
-        #if 'BGPA_107227' in row:  # если раскомментить, выдаст одну строку
-            data.append(row)
+        data.append(row)
 
 # Подключаемся к базе данных
 connection = mysql.connector.connect(
@@ -36,7 +35,6 @@ connection = mysql.connector.connect(
     port=db_port
 )
 
-# Теперь можно работать с подключением
 cursor = connection.cursor()
 
 print("Проверка данных из CSV файла в базе данных:")

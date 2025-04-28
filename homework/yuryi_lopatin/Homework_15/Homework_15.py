@@ -120,43 +120,7 @@ cursor.execute(query, values)
 lesson4_id = cursor.lastrowid
 cursor.execute(f'SELECT * FROM lessons WHERE id = {lesson4_id}')
 print(cursor.fetchone())
-'''
-В lessons четыре отдельных INSERT-запроса для уроков изменить нельзя т.к.их id используется в дальнейшем 
-если бы не использовались можно было бы сделать так Вместо четырех отдельных INSERT-запросов для уроков:
-lessons_data = [
-    ('swing', subject1_id),
-    ('shafle', subject1_id),
-    ('solfejio', subject2_id),
-    ('garmonia', subject2_id)
-]
 
-query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
-cursor.executemany(query, lessons_data)
-
-Если нужно проверить добавленные уроки:
-cursor.execute(f'SELECT * FROM lessons WHERE subject_id IN ({subject1_id}, {subject2_id})')
-print
-
-query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (5, lesson1_id, student_id)
-cursor.execute(query, values)
-mark1_id = cursor.lastrowid
-
-query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (4, lesson2_id, student_id)
-cursor.execute(query, values)
-mark2_id = cursor.lastrowid
-
-query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (3, lesson3_id, student_id)
-cursor.execute(query, values)
-mark3_id = cursor.lastrowid
-
-query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (4, lesson4_id, student_id)
-cursor.execute(query, values)
-mark4_id = cursor.lastrowid
-'''
 # Вместо четырех отдельных INSERT-запросов
 marks_data = [
     (5, lesson1_id, student_id),
