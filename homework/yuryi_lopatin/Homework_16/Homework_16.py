@@ -54,8 +54,7 @@ for row in data:
 
     if group_result:
         group_id = group_result[0][0]
-        #print(group_result)
-        # Теперь проверяем наличие студента
+
         query_student = "SELECT * FROM students WHERE name = %s AND second_name = %s AND group_id = %s"
         cursor.execute(query_student, (row[0], row[1], group_id))
         student_result = cursor.fetchall()
