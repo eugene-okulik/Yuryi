@@ -62,25 +62,20 @@ for row in data:
                 s.name AS student_name,
                 s.second_name AS student_second_name,
                 s.group_id AS student_group_id,
-    
                 g.id AS group_id,
                 g.title AS group_title,
                 g.start_date AS group_start_date,
                 g.end_date AS group_end_date,
-    
                 b.id AS book_id,
                 b.title AS book_title,
                 b.taken_by_student_id AS book_taken_by_student_id,
-    
                 m.id AS mark_id,
                 m.value AS mark_value,
                 m.lesson_id AS mark_lesson_id,
                 m.student_id AS mark_student_id,
-    
                 l.id AS lesson_id,
                 l.title AS lesson_title,
                 l.subject_id AS lesson_subject_id,
-    
                 subj.id AS subject_id,
                 subj.title AS subject_title
             FROM students s
