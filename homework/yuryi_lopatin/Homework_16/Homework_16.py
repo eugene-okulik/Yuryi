@@ -37,7 +37,6 @@ connection = mysql.connector.connect(
 )
 
 cursor = connection.cursor()
-
 print("Проверка данных из CSV файла в базе данных:")
 for row in data:
     name = row[0]
@@ -55,12 +54,82 @@ for row in data:
     if group_result:
         group_id = group_result[0][0]
 
-        query_student = "SELECT * FROM students WHERE name = %s AND second_name = %s AND group_id = %s"
-        cursor.execute(query_student, (row[0], row[1], group_id))
-        student_result = cursor.fetchall()
-        if student_result:
-            print(f'Запись найдена: {row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}')
-        else:
-            print(f'Запись не найдена: {row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}')
-    else:
-        print(f'Группа не найдена: {row[2]}')
+        query_student = ("SELECT * FROM students")
+    # Запрос всех данных о студенте
+        cursor.execute(
+            """SELECT
+                s.id AS student_id,
+                s.name AS student_name,
+                s.second_name AS student_second_name,
+                s.group_id AS student_group_id,
+    
+                g.id AS group_id,
+                g.title AS group_title,
+                g.start_date AS group_start_date,
+                g.end_date AS group_end_date,
+    
+                b.id AS book_id,
+                b.title AS book_title,
+                b.taken_by_student_id AS book_taken_by_student_id,
+    
+                m.id AS mark_id,
+                m.value AS mark_value,
+                m.lesson_id AS mark_lesson_id,
+                m.student_id AS mark_student_id,
+    
+                l.id AS lesson_id,
+                l.title AS lesson_title,
+                l.subject_id AS lesson_subject_id,
+    
+                subj.id AS subject_id,
+                subj.title AS subject_title
+            FROM students s
+            LEFT JOIN `groups` g ON s.group_id = g.id
+            LEFT JOIN books b ON b.taken_by_student_id = s.id
+            LEFT JOIN marks m ON m.student_id = s.id
+            LEFT JOIN lessons l ON m.lesson_id = l.id
+            LEFT JOIN subjets subj ON l.subject_id = subj.id;
+            """)
+        data = cursor.fetchall()
+
+        print("\nПолная информация о студенте:")
+        for row in data:
+            print(f"Имя: {row[0]}")
+            print(f"Фамилия: {row[1]}")
+            print(f"Группа: {row[2]}")
+
+            print(f"Название группы: {row[3]}")
+
+            print(f"Название книги: {row[4]}")
+            print(f"Название предмета: {row[5]}")
+            print(f"Название занятия: {row[6]}")
+
+            print(f"Оценка студенту: {row[7]}")
+            print("---------------------------------")
+
+# print("Проверка данных из CSV файла в базе данных:")
+# for row in data:
+#     name = row[0]
+#     second_name = row[1]
+#     group_id = row[2]
+#     book_tittle = row[3]
+#     subject_title = row[4]
+#     lesson_title = row[5]
+#     mark_value = row[6]
+#     query_group = "SELECT * FROM`groups` g WHERE title = %s"
+#     values = (row[2],)
+#     cursor.execute(query_group, values)
+#     group_result = cursor.fetchall()
+#
+#     if group_result:
+#         group_id = group_result[0][0]
+#
+#         query_student = ("SELECT * FROM students WHERE group_id = %s")
+#         cursor.execute(query_student, (group_id))
+#         student_result = cursor.fetchall()
+#         if student_result:
+#             print(f'Запись найдена: {row[2]}')
+#         else:
+#             print(f'Запись не найдена:  {row[2]}')
+#     else:
+#         print(f'Группа не найдена: {row[2]}')
