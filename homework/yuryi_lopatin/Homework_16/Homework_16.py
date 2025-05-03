@@ -41,13 +41,14 @@ print("Проверка данных из CSV файла в базе данны�
 for row in data:
     name = row[0]
     second_name = row[1]
-    group_id = row[2]
+    group_title = row[2]
     book_tittle = row[3]
     subject_title = row[4]
     lesson_title = row[5]
     mark_value = row[6]
     query_group = "SELECT * FROM`groups` g WHERE title = %s"
     values = (row[2],)
+
     cursor.execute(query_group, values)
     group_result = cursor.fetchall()
 
@@ -102,29 +103,29 @@ for row in data:
             print(f"Оценка студенту: {row[7]}")
             print("---------------------------------")
 
-# print("Проверка данных из CSV файла в базе данных:")
-# for row in data:
-#     name = row[0]
-#     second_name = row[1]
-#     group_id = row[2]
-#     book_tittle = row[3]
-#     subject_title = row[4]
-#     lesson_title = row[5]
-#     mark_value = row[6]
-#     query_group = "SELECT * FROM`groups` g WHERE title = %s"
-#     values = (row[2],)
-#     cursor.execute(query_group, values)
-#     group_result = cursor.fetchall()
-#
-#     if group_result:
-#         group_id = group_result[0][0]
-#
-#         query_student = ("SELECT * FROM students WHERE group_id = %s")
-#         cursor.execute(query_student, (group_id))
-#         student_result = cursor.fetchall()
-#         if student_result:
-#             print(f'Запись найдена: {row[2]}')
-#         else:
-#             print(f'Запись не найдена:  {row[2]}')
-#     else:
-#         print(f'Группа не найдена: {row[2]}')
+print("Проверка данных из CSV файла в базе данных:")
+for row in data:
+    name = row[0]
+    second_name = row[1]
+    group_id = row[2]
+    book_tittle = row[3]
+    subject_title = row[4]
+    lesson_title = row[5]
+    mark_value = row[6]
+    query_group = "SELECT * FROM`groups` g WHERE title = %s"
+    values = (row[2],)
+    cursor.execute(query_group, values)
+    group_result = cursor.fetchall()
+
+    if group_result:
+        group_id = group_result[0][0]
+
+        query_student = ("SELECT * FROM students WHERE group_id = %s")
+        cursor.execute(query_student, (group_id))
+        student_result = cursor.fetchall()
+        if student_result:
+            print(f'Запись найдена: {row[2]}')
+        else:
+            print(f'Запись не найдена:  {row[2]}')
+    else:
+        print(f'Группа не найдена: {row[2]}')
