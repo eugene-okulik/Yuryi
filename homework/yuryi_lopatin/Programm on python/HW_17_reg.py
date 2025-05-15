@@ -12,7 +12,7 @@ from calendar import error
 
 base_path = os.path.dirname(__file__)   # запишет текущий рабочий каталога в переменную base_path
 homew_path = os.path.dirname(os.path.dirname(base_path))  # Переход на папку выше
-file_path = os.path.join(homew_path, 'eugene_okulik', 'data', 'logs')  #путь к каталогу с логами
+file_path = os.path.join(homew_path, 'eugene_okulik', 'data', 'logs')  # путь к каталогу с логами
 
 # ПОИСК ФАЙЛОВ:
 result = []  # Создаем пустой список, который будет хранить результаты поиска. В список будут добавляться индексы
@@ -22,6 +22,7 @@ def get_files(path, search_text=None):
     for file in os.listdir(path):
         if os.path.isfile(os.path.join(path, file)):
             yield file
+
 
 for file in get_files(file_path, 'error'):
     search_text = "ERROR"
