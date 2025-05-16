@@ -14,22 +14,25 @@ def find_text_in_files(path, search_text):
         if os.path.isfile(os.path.join(path, file)):
             try:
                 with open(os.path.join(path, file), 'r', encoding='utf-8') as f:
-                    content = f.read()
-                    if search_text.upper() in content.upper():  # Поиск без учета регистра для всего содержимого
-                        words = re.findall(r'\S+', content)  # Разбиваем текст на слова
-                        for i, word in enumerate(words):
-                            if search_text.upper() in word.upper():  # Поиск без учета регистра
-                                found = True
-                                # Определяем границы контекста
-                                start = max(0, i - 3)  # 3 слова до
-                                end = min(len(words), i + 4)  # 3 слова после + 1
-
-                                # Формируем контекст
-                                context = ' '.join(words[start:end])
-                                # Выводим результат
-                                final_path = os.path.join(path, file)
-                                print(f"Найдено '{search_text}' в файле: {final_path}")
-                                print(f"Контекст: ...{context}...")
+                    lines = f.readlines()
+                    for line_num, line in enumerate(lines, 1):  # Нумерация строк с 1
+                        if search_text.upper() in line.upper():  # Поиск без учета регистра для всего содержимого
+                            found = True
+                            final_path = os.path.join(path, file)
+                            words = re.findall(r'\S+', line)  # Разбиваем текст на слова
+                            for i, word in enumerate(words):  # Ищем слово, содержащее искомый текст
+                                if search_text.upper() in word.upper():  # Поиск без учета регистра
+                                    # Определяем границы контекста
+                                    start = max(0, i - 3)  # 3 слова до
+                                    end = min(len(words), i + 4)  # 3 слова после +
+                                    # Формируем контекст
+                                    context = ' '.join(words[start:end])
+                                    # Выводим результат
+                                    final_path = os.path.join(path, file)
+                                    print(f"Найдено '{search_text}' в файле: {final_path}")
+                                    print(f"Строка №{line_num}: Контекст: ...{context}...")
+                                    print("-" * 50)
+                                    break  # Переходим к следующей строке после нахождения первого контекста
             except UnicodeDecodeError:
                 print(f"Не удалось прочитать файл {file} - проблема с кодировкой")
 
@@ -38,8 +41,8 @@ def find_text_in_files(path, search_text):
 
 
 # Запрашиваем у пользователя путь к директории и искомый текст
-find_file_path = input("Введите путь к директории для поиска: ")
+eugene_okulik_path = input("Введите путь к директории для поиска: ")
 search_text = input("Введите текст для поиска: ")
 
 # Выполняем поиск
-find_text_in_files(find_file_path, search_text)
+find_text_in_files(eugene_okulik_path, search_text)
