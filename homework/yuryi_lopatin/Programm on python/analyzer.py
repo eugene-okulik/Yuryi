@@ -1,5 +1,6 @@
 import os
 import re
+import argparse
 
 
 def get_files(path):
@@ -39,10 +40,20 @@ def find_text_in_files(path, search_text):
     if not found:
         print(f"Текст '{search_text}' не найден ни в одном файле в директории {path}")
 
+# Создаем парсер аргументов командной строки
+def main():
+    parser = argparse.ArgumentParser(description='Поиск текста в файлах указанной директории')
+    parser.add_argument('path', type=str, help='Путь к директории для поиска')  # позиционный арг
+    parser.add_argument('--text', type=str, required=True, help='Текст для поиска')  # именованный арг
+    args = parser.parse_args()
+    find_text_in_files(args.path, args.text)
 
-# Запрашиваем у пользователя путь к директории и искомый текст
-eugene_okulik_path = input("Введите путь к директории для поиска: ")
-search_text = input("Введите текст для поиска: ")
+if __name__=="__main__":
+    main()
 
-# Выполняем поиск
-find_text_in_files(eugene_okulik_path, search_text)
+# # Запрашиваем у пользователя путь к директории и искомый текст
+# eugene_okulik_path = input("Введите путь к директории для поиска: ")
+# search_text = input("Введите текст для поиска: ")
+#
+# # Выполняем поиск
+# find_text_in_files(eugene_okulik_path, search_text)
