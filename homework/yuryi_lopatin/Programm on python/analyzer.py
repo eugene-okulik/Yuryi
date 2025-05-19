@@ -40,6 +40,7 @@ def find_text_in_files(path, search_text):
     if not found:
         print(f"Текст '{search_text}' не найден ни в одном файле в директории {path}")
 
+
 # Создаем парсер аргументов командной строки
 def main():
     parser = argparse.ArgumentParser(description='Поиск текста в файлах указанной директории')
@@ -48,7 +49,8 @@ def main():
     args = parser.parse_args()
     find_text_in_files(args.path, args.text)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
 
 # # Запрашиваем у пользователя путь к директории и искомый текст
