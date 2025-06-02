@@ -7,6 +7,7 @@ def get_all_obj():
     print(response)
 get_all_obj()
 
+
 def new_object():
     body = {"name": "lox", "data": {"color": "white", "size": "big"}}
     headers = {'Content-Type': 'application/json'}
@@ -15,11 +16,13 @@ def new_object():
     return response['id']
 new_object()
 
+
 def get_new_object():
     post_id = new_object()
     response = requests.get(f'http://167.172.172.115:52353/object/{post_id}').json()
     print(response)
 get_new_object()
+
 
 def put_object():
     post_id = new_object()
@@ -32,6 +35,7 @@ def put_object():
     assert response['data'] == {"color": "red", "size": "small"}
     print(response)
 put_object()
+
 
 def patch_post():
     post_id = new_object()  # 409 #new_post() #1
@@ -46,6 +50,7 @@ def patch_post():
     assert response['data'] == {"color": "pink", "size": "very big"}
     print(response)
 patch_post()
+
 
 def delete_a_post():
     post_id = new_object()
