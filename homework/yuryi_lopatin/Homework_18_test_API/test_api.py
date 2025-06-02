@@ -11,7 +11,7 @@ get_all_obj()
 def new_object():
     body = {"name": "lox", "data": {"color": "white", "size": "big"}}
     headers = {'Content-Type': 'application/json'}
-    response = requests.post('http://167.172.172.115:52353/object', json = body, headers = headers).json()
+    response = requests.post('http://167.172.172.115:52353/object', json=body, headers=headers).json()
     print(response)
     return response['id']
 new_object()
@@ -30,7 +30,7 @@ def put_object():
         "name": "saks",
         "data": {"color": "red", "size": "small"}
     }
-    response = requests.put(f'http://167.172.172.115:52353/object/{post_id}', json = body).json()
+    response = requests.put(f'http://167.172.172.115:52353/object/{post_id}', json=body).json()
     assert response['name'] == 'saks'
     assert response['data'] == {"color": "red", "size": "small"}
     print(response)
@@ -44,7 +44,7 @@ def patch_post():
         "data": {"color": "pink", "size": "very big"}
     }
     headers = {'Content-Type': 'application/json'}
-    response = (requests.patch(f'http://167.172.172.115:52353/object/{post_id}', json = body, headers = headers)
+    response = (requests.patch(f'http://167.172.172.115:52353/object/{post_id}', json=body, headers=headers)
                 .json())
     assert response['name'] == 'ass'
     assert response['data'] == {"color": "pink", "size": "very big"}
