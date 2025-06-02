@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-import os       # для работы с путями и файловой системой
-import re       # для регулярных выражений (пока не используется)
-import sys      # для доступа к аргументам командной строки
-import argparse # для удобного разбора аргументов командной строки (пока не используется)
+import os        # для работы с путями и файловой системой
+import re        # для регулярных выражений (пока не используется)
+import sys       # для доступа к аргументам командной строки
+import argparse  # для удобного разбора аргументов командной строки (пока не используется)
 from calendar import error
 
 
 base_path = os.path.dirname(__file__)   # запишет текущий рабочий каталога в переменную base_path
-homew_path = os.path.dirname(os.path.dirname(base_path)) # Переход на папку выше
-file_path = os.path.join(homew_path, 'eugene_okulik', 'data', 'logs') # Формирование пути к каталогу с логами
+homew_path = os.path.dirname(os.path.dirname(base_path))  # Переход на папку выше
+file_path = os.path.join(homew_path, 'eugene_okulik', 'data', 'logs')  # Формирование пути к каталогу с логами
 
 
 # ПОИСК ФАЙЛОВ:

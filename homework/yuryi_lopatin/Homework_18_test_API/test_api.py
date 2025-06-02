@@ -2,13 +2,11 @@ import requests
 import json
 
 
-#GET all obj
 def get_all_obj():
     response = requests.get('http://167.172.172.115:52353/object').json()
     print(response)
 get_all_obj()
 
-#POST
 def new_object():
     body = {"name": "lox", "data": {"color": "white", "size": "big"}}
     headers = {'Content-Type': 'application/json'}
@@ -17,15 +15,12 @@ def new_object():
     return response['id']
 new_object()
 
-#GET new obj
 def get_new_object():
     post_id = new_object()
     response = requests.get(f'http://167.172.172.115:52353/object/{post_id}').json()
-    #assert response['id'] == post_id # без assert отдаст [], с assert ошибка т.к. в [] нет 'id'
     print(response)
 get_new_object()
 
-#PUT with assert
 def put_object():
     post_id = new_object()
     body = {
@@ -38,7 +33,6 @@ def put_object():
     print(response)
 put_object()
 
-#PATCH with assert
 def patch_post():
     post_id = new_object()  # 409 #new_post() #1
     body = {
@@ -53,7 +47,6 @@ def patch_post():
     print(response)
 patch_post()
 
-#DELETE with assert
 def delete_a_post():
     post_id = new_object()
     response = requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
