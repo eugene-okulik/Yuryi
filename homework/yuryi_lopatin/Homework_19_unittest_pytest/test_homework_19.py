@@ -11,9 +11,8 @@ def start_testing():
 
 def test_get_all_obj(start_testing):
     print('Тест получения всех объектов')
-    response = requests.get('http://167.172.172.115:52353/object')#.json()
+    response = requests.get('http://167.172.172.115:52353/object')
     assert response.status_code == 200
-    #print(response)
 
 
 """Создает новых объектов с разными данными"""
@@ -21,11 +20,11 @@ def test_get_all_obj(start_testing):
     ("iphone", {"color": "white", "size": "big"}),
     ("samsung", {"color": "silver", "size": "medium"}),
     ("xiaomi", {"color": "black", "size": "smal"})
-    ])
+    ]
+                         )
 def test_create_new_obj_id(name, data):
     body = {"name": name, "data": data}
     headers = {'Content-Type': 'application/json'}
-    #print('Создает новых объектов с разными данными')
     response = requests.post('http://167.172.172.115:52353/object', json=body, headers=headers)
     print(f'Created object: {name}')
     assert response.status_code == 200
@@ -34,7 +33,6 @@ def test_create_new_obj_id(name, data):
 
     requests.delete(f'http://167.172.172.115:52353/object/{obj_id}')
     print(f'Удаление объекта с id: {obj_id}')
-
 
 
 """Создает новый объект и возвращает его ID"""
