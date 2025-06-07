@@ -15,7 +15,6 @@ def test_get_all_obj(start_testing):
     assert response.status_code == 200
 
 
-"""Создает новых объектов с разными данными"""
 @pytest.mark.parametrize('name, data', [
     ("iphone", {"color": "white", "size": "big"}),
     ("samsung", {"color": "silver", "size": "medium"}),
@@ -34,7 +33,6 @@ def test_create_new_obj_id(name, data):
     print(f'Удаление объекта с id: {obj_id}')
 
 
-"""Создает новый объект и возвращает его ID"""
 @pytest.fixture()
 def new_obj_id():
     body = {"name": "lox", "data": {"color": "white", "size": "big"}}
@@ -48,7 +46,6 @@ def new_obj_id():
     requests.delete(f'http://167.172.172.115:52353/object/{obj_id}')
 
 
-"""Тест получения объекта по ID"""
 def test_get_one_obj(new_obj_id):
     obj_id = new_obj_id
     print('Тест получения объекта по ID')
@@ -57,7 +54,6 @@ def test_get_one_obj(new_obj_id):
     assert response.json()['id'] == obj_id
 
 
-"""Тест обновления объекта (PUT)"""
 @pytest.mark.medium
 def test_put_object(new_obj_id):
     obj_id = new_obj_id
@@ -71,7 +67,6 @@ def test_put_object(new_obj_id):
     assert response['data'] == {"color": "red", "size": "small"}
 
 
-"""Тест частичного обновления объекта (PATCH)"""
 @pytest.mark.medium
 def test_patch_object(new_obj_id):
     obj_id = new_obj_id
@@ -87,7 +82,6 @@ def test_patch_object(new_obj_id):
     assert response['data'] == {"color": "pink", "size": "very big"}
 
 
-"""Тест удаления объекта"""
 @pytest.mark.critical
 def test_delete_a_object(new_obj_id):
     obj_id = new_obj_id
