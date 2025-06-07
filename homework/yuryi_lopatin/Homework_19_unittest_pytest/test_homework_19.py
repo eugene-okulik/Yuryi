@@ -19,9 +19,8 @@ def test_get_all_obj(start_testing):
 @pytest.mark.parametrize('name, data', [
     ("iphone", {"color": "white", "size": "big"}),
     ("samsung", {"color": "silver", "size": "medium"}),
-    ("xiaomi", {"color": "black", "size": "smal"})
-    ]
-                         )
+    ("xiaomi", {"color": "black", "size": "small"})
+])
 def test_create_new_obj_id(name, data):
     body = {"name": name, "data": data}
     headers = {'Content-Type': 'application/json'}
