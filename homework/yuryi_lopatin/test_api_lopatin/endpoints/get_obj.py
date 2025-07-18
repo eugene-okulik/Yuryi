@@ -9,14 +9,12 @@ class GetObj(Endpoint):
     response = None
     obj_id = None
 
-
     @allure.step('Get_all_obj')
     def get_all_obj(self):
         self.response = requests.get(self.url)
         print(f'GET response {self.response.status_code}')
         print(self.url)
         return self.response
-
 
     @allure.step('Get_a_obj')
     def get_one_obj(self, obj_id):

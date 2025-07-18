@@ -5,7 +5,6 @@ from test_api_lopatin.endpoints.endpoint import Endpoint
 
 class CreateObj(Endpoint):
 
-
     def create_new_obj(self, body, headers=None):
         # if len(body['name']) > 1000:  # if добавим если есть логика. Например, если длинное имя, то отдельный endpoint
         #     self.url = f'{self.url}/long_name'  # если нет отдельной логики, то эти строки можно убрать
@@ -16,10 +15,10 @@ class CreateObj(Endpoint):
             headers=headers
         )
         print(self.response, self.url)
-        self.json = self.response.json()#['id']
+        self.json = self.response.json()
         return self.response
 
-    @allure.step(f'Check that name is the same as sent')
+    @allure.step('Check that name is the same as sent')
     def check_response_name_is_correct(self, name):
         assert self.json['name'] == name
 

@@ -8,7 +8,6 @@ class Endpoint:  # родительский класс для всех endpoints
     obj_id = None
     headers = {'Content-Type': 'application/json'}
 
-
     @allure.step('Check that title is the same sent')
     def check_response_name_is_correct(self, name):
         assert self.json['name'] == name, 'name is not name'
