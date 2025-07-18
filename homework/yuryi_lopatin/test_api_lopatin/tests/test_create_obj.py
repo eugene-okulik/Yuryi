@@ -1,7 +1,7 @@
 import pytest
 import allure
 
-from test_api_lopatin.conftest import create_obj_endpoint, update_obj_endpoint, GetObj
+from test_api_lopatin.conftest import GetObj
 
 
 @pytest.fixture(scope='session')
