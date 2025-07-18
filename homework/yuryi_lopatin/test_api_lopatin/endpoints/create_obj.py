@@ -6,9 +6,7 @@ from test_api_lopatin.endpoints.endpoint import Endpoint
 class CreateObj(Endpoint):
 
     def create_new_obj(self, body, headers=None):
-        # if len(body['name']) > 1000:  # if добавим если есть логика. Например, если длинное имя, то отдельный endpoint
-        #     self.url = f'{self.url}/long_name'  # если нет отдельной логики, то эти строки можно убрать
-        headers = headers if headers else self.headers  # если headers не application/json, то None
+        headers = headers if headers else self.headers
         self.response = requests.post(
             self.url,
             json=body,

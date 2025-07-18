@@ -24,7 +24,6 @@ TEST_DATA2 = [
     {'name': "xiaomi", 'data': {"color": "black", "size": "small"}}
 ]
 
-
 NEGATIVE_DATA = [
     {"name": ['array'], "data": {"color": "blue", "size": "small"}},
     {"name": "huawei", "data": [{"color": "purple", "size": "medium"}]}
