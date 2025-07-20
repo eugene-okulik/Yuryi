@@ -1,22 +1,15 @@
 import pytest
 import allure
 
+# Импорты нужны для фикстур, используемых в тестах
+from test_api_lopatin.conftest import create_obj_endpoint, update_obj_endpoint  # noqa: F401 - линтер игнорирует импорт
 from test_api_lopatin.conftest import GetObj
-
-
-@pytest.fixture(scope='session')
-def start_testing():
-    print('Start testing')
-    yield
-    print('Testing completed')
+from test_api_lopatin.conftest import DeleteObj
 
 
 TEST_DATA = [
     {'name': "poco", 'data': {"color": "red", "size": "small"}},
-    {'name': "honor", 'data': {"color": "green", "size": "medium"}}
-]
-
-TEST_DATA2 = [
+    {'name': "honor", 'data': {"color": "green", "size": "medium"}},
     {'name': "iphone", 'data': {"color": "white", "size": "big"}},
     {'name': "samsung", 'data': {"color": "silver", "size": "medium"}},
     {'name': "xiaomi", 'data': {"color": "black", "size": "small"}}
@@ -32,13 +25,10 @@ NEGATIVE_DATA = [
 @allure.story('Get object')
 @allure.title('Получение всех объектов')
 @pytest.mark.smoke
-def test_get_all_obj():
+def test_get_all_obj(get_obj_endpoint):
     print('Тест получения всех объектов')
-    print('get all object')
-    get_all_obj_endpoint = GetObj()
-    response = get_all_obj_endpoint.get_all_obj()
-    assert response.status_code == 200
-    print(response)
+    get_obj_endpoint.get_all_obj()
+    get_obj_endpoint.check_response_status_is_200
 
 
 @allure.feature('object')
@@ -55,21 +45,10 @@ def test_create_new_obj(create_obj_endpoint, data):
 @allure.story('Get object')
 @allure.title('Получение одного объекта')
 @pytest.mark.smoke
-def test_get_one_obj(create_new_obj):
+def test_get_one_obj(get_obj_endpoint, create_new_obj):
     print('Тест получения одного объекта')
-    get_one_obj_endpoint = GetObj()
-    response = get_one_obj_endpoint.get_one_obj(create_new_obj)
-    assert response.status_code == 200
-
-
-@allure.feature('object')
-@allure.story('Manipulate object')
-@pytest.mark.parametrize('data', TEST_DATA2)
-def test_create_new_obj2(create_obj_endpoint, data):
-    print('Create new object with TEST_DATA2')
-    create_obj_endpoint.create_new_obj(body=data)  # инициализированный объект.его метод
-    create_obj_endpoint.check_response_status_is_200()  # инициализированный объект.его метод
-    create_obj_endpoint.check_response_name_is_correct(data['name'])
+    get_obj_endpoint.get_one_obj(create_new_obj)
+    get_obj_endpoint.check_response_status_is_200()
 
 
 @allure.feature('object')
@@ -87,6 +66,7 @@ def test_create_new_obj_with_array_in_body(create_obj_endpoint, negative_data):
 @allure.title('Обновление объекта PUT запрос')
 @pytest.mark.medium
 def test_put_object(create_new_obj, update_obj_endpoint):
+    print('Тест частичного обновления объекта (PUT)')
     body = {
         "name": "blackberry",
         "data": {"color": "red", "size": "small"}
@@ -113,6 +93,8 @@ def test_patch_object(create_new_obj, update_obj_endpoint):
 @allure.story('Manipulate object')
 @allure.title('Тест удаления объекта (delete)')
 @pytest.mark.medium
-def test_delete_object(create_new_obj, update_obj_endpoint):
+def test_delete_object(create_new_obj, delete_obj_endpoint):
     print('Тест удаления объекта (delete)')
-    update_obj_endpoint.delete_obj(create_new_obj)
+    delete_obj_endpoint.obj_id = create_new_obj
+    delete_obj_endpoint.delete_obj()
+    delete_obj_endpoint.check_response_status_is_200()
