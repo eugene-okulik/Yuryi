@@ -1,11 +1,6 @@
 import pytest
 import allure
 
-# Импорты нужны для фикстур, используемых в тестах
-from test_api_lopatin.conftest import create_obj_endpoint, update_obj_endpoint  # noqa: F401 - линтер игнорирует импорт
-from test_api_lopatin.conftest import GetObj
-from test_api_lopatin.conftest import DeleteObj
-
 
 TEST_DATA = [
     {'name': "poco", 'data': {"color": "red", "size": "small"}},
