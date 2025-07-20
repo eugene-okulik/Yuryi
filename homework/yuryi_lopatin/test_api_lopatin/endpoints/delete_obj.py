@@ -14,4 +14,3 @@ class DeleteObj(Endpoint):
         print(f'DELETE response {self.response.status_code}')
         print(f'DELETE URL: {self.url}/{self.obj_id}')
         return self.response
-    
