@@ -41,5 +41,4 @@ def create_new_obj(create_obj_endpoint):
     obj_id = response.json()['id']
     print(f'Created object with ID: {obj_id}')
     yield obj_id
-    print('deleting obj')
-    requests.delete(f'http://167.172.172.115:52353/object/{obj_id}')
+    print('Object already deleted in test')   # Удаления не делаем - объект уже удален в тесте
