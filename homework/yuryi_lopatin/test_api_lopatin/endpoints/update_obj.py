@@ -17,8 +17,8 @@ class UpdateObj(Endpoint):
             json=body,
             headers=headers
         )
-        print(f'PUT response{self.response.status_code}')
-        print(f'PUT URL:{self.url}/{obj_id}')
+        print(f'PUT response {self.response.status_code}')
+        print(f'PUT URL: {self.url}/{obj_id}')
         self.json = self.response.json()
         return self.response  # на случай работы на прямую с response в def put_a_post файла test_jsph.py
 
@@ -32,12 +32,7 @@ class UpdateObj(Endpoint):
             json=body,
             headers=headers
         )
-        print(f'PATCH response{self.response.status_code}')
-        print(f'PATCH URL:{self.url}/{obj_id}')
+        print(f'PATCH response {self.response.status_code}')
+        print(f'PATCH URL: {self.url}/{obj_id}')
         self.json = self.response.json()  # ['id'] # тут в self.post_id будет хранится ответ в виде id из json
         return self.response  # на случай работы на прямую с response в def put_a_post файла test_jsph.py
-
-    @allure.step('DELETE_request')
-    def delete_obj(self, obj_id):
-        self.response = requests.delete(f'{self.url}/{obj_id}')
-        print(f'DELETE URL:{self.url}/{obj_id}')

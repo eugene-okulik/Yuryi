@@ -23,7 +23,7 @@ NEGATIVE_DATA = [
 def test_get_all_obj(get_obj_endpoint):
     print('Тест получения всех объектов')
     get_obj_endpoint.get_all_obj()
-    get_obj_endpoint.check_response_status_is_200
+    get_obj_endpoint.check_response_status_is_200()
 
 
 @allure.feature('object')

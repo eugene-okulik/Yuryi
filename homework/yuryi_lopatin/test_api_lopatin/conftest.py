@@ -42,3 +42,6 @@ def create_new_obj(create_obj_endpoint):
     print(f'Created object with ID: {obj_id}')
     yield obj_id
     print('Object already deleted in test')   # Удаления не делаем - объект уже удален в тесте
+    # delete_endpoint = DeleteObj()
+    # delete_endpoint.obj_id = obj_id
+    # delete_endpoint.delete_obj()
