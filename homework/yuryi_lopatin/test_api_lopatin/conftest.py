@@ -62,6 +62,3 @@ def create_obj_for_delete(create_obj_endpoint):
     print(f'Created object for delete test with ID: {obj_id}')
     yield obj_id
     print('No cleanup needed - object was deleted in test')
-
-
-
