@@ -88,8 +88,8 @@ def test_patch_object(create_new_obj, update_obj_endpoint):
 @allure.story('Manipulate object')
 @allure.title('Тест удаления объекта (delete)')
 @pytest.mark.medium
-def test_delete_object(create_new_obj, delete_obj_endpoint):
+def test_delete_object(create_obj_for_delete, delete_obj_endpoint):
     print('Тест удаления объекта (delete)')
-    delete_obj_endpoint.obj_id = create_new_obj
+    delete_obj_endpoint.obj_id = create_obj_for_delete
     delete_obj_endpoint.delete_obj()
     delete_obj_endpoint.check_response_status_is_200()

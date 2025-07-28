@@ -41,7 +41,27 @@ def create_new_obj(create_obj_endpoint):
     obj_id = response.json()['id']
     print(f'Created object with ID: {obj_id}')
     yield obj_id
-    print('Object already deleted in test')   # Удаления не делаем - объект уже удален в тесте
-    # delete_endpoint = DeleteObj()
-    # delete_endpoint.obj_id = obj_id
-    # delete_endpoint.delete_obj()
+    print('Object obj')   # Удаления не делаем - объект уже удален в тесте
+    delete_endpoint = DeleteObj()
+    delete_endpoint.obj_id = obj_id
+    delete_response = delete_endpoint.delete_obj()
+    if delete_response.status_code == 200:
+        print(f'Object {obj_id} successfully deleted')
+    elif delete_response.status_code == 404:
+        print(f'Object {obj_id} deleted in test')
+    else:
+        print(f'Unexpected status code deletion {delete_response.status_code}')
+
+
+@pytest.fixture()  # создание объекта БЕЗ cleanup для теста удаления
+def create_obj_for_delete(create_obj_endpoint):
+    body = {"name": "test_object_for_delete", "data": {"key": "value", "key2": "value2"}}
+    response = create_obj_endpoint.create_new_obj(body)
+    print(response)
+    obj_id = response.json()['id']
+    print(f'Created object for delete test with ID: {obj_id}')
+    yield obj_id
+    print('No cleanup needed - object was deleted in test')
+
+
+
