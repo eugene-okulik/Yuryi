@@ -36,7 +36,7 @@ class UserObj(HttpUser):
         if self.obj_id:
             response = self.client.put(
                 f'/object/{self.obj_id}',
-                json={"name": "saks","data": {"color": "red", "siz": "small"}},
+                json={"name": "saks", "data": {"color": "red", "siz": "small"}},
                 headers={'Content-Type': 'application/json'}
             )
             print(f'Update object: {self.obj_id}, response: {response.status_code}')
