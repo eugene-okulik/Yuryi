@@ -15,7 +15,6 @@ def driver():
     yield chrome_driver
     sleep(10)
 
-
 "Осуществляем проверку введенного текста assert(ом)"
 def test_input_text(driver):
     input_data = 'text'
@@ -82,18 +81,12 @@ def test_inter_in_form(driver):
     state_input.send_keys(Keys.ENTER)
     print("✅ Выбрали город: Delhi")
 
-    #Отправляем форму
-    submit_button = driver.find_element(By.ID, 'submit')
+    submit_button = driver.find_element(By.ID, 'submit')  # Отправляем форму
     driver.execute_script("arguments[0].click();", submit_button)
 
-    sleep(2)
-
-    # Читаем результаты
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 10)  # Читаем результаты
     modal = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'modal-content')))
-
     rows = modal.find_elements(By.CSS_SELECTOR, '.table tr')
-
     print("\nРЕЗУЛЬТАТЫ:")
     for row in rows:
         cells = row.find_elements(By.TAG_NAME, 'td')
@@ -104,16 +97,10 @@ def test_select_language(driver):
     """Выбор языка и проверка результата"""
     wait = WebDriverWait(driver, 10)
     driver.get('https://www.qa-practice.com/elements/select/single_select')
-
-    # Выбираем Python
-    select = Select(driver.find_element(By.ID, 'id_choose_language'))
+    select = Select(driver.find_element(By.ID, 'id_choose_language'))  # Выбираем Python
     select.select_by_visible_text('Python')
-
-    # Отправляем
-    driver.find_element(By.ID, 'submit-id-submit').click()
-
-    # Проверяем
-    result = wait.until(EC.visibility_of_element_located((By.ID, 'result-text')))
+    driver.find_element(By.ID, 'submit-id-submit').click()  # Отправляем
+    result = wait.until(EC.visibility_of_element_located((By.ID, 'result-text')))  # Проверяем
     assert result.text == 'Python'
     print("✅ Тест пройден!")
 
@@ -121,14 +108,8 @@ def test_hello_world(driver):
     """Минимальная версия теста"""
     wait = WebDriverWait(driver, 15)
     driver.get('https://the-internet.herokuapp.com/dynamic_loading/2')
-
-    # Клик
-    driver.find_element(By.CSS_SELECTOR, '#start button').click()
+    driver.find_element(By.CSS_SELECTOR, '#start button').click()  # Клик
     print("✅ Кликнули Start")
-
-    # Ждём результат
-    result = wait.until(EC.visibility_of_element_located((By.ID, 'finish')))
-
-    # Проверка
-    assert result.text.strip() == 'Hello World!'
+    result = wait.until(EC.visibility_of_element_located((By.ID, 'finish'))) # Ждём результат
+    assert result.text.strip() == 'Hello World!'  # Проверка
     print(f"✅ Тест пройден! Текст: {result.text}")
