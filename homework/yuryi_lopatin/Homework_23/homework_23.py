@@ -5,29 +5,25 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
-from time import sleep
 
 
 @pytest.fixture()
 def driver():
     chrome_driver = webdriver.Chrome()
     chrome_driver.maximize_window()
-    yield chrome_driver
-    sleep(10)
+    return chrome_driver
 
 
-"Осуществляем проверку введенного текста assert(ом)"
 def test_input_text(driver):
     input_data = 'text'
-    driver.get('https://www.qa-practice.com/elements/input/simple')  # заходим на стр
-    text_string = driver.find_element(By.ID, 'id_text_string')  # указываем что ищем
+    driver.get('https://www.qa-practice.com/elements/input/simple')
+    text_string = driver.find_element(By.ID, 'id_text_string')
     text_string.send_keys(input_data)
     text_string.send_keys(Keys.ENTER)
     result_text = driver.find_element(By.ID, 'result-text')
     assert result_text.text == input_data
 
 
-"""Заполняем форму регистрации"""
 def test_inter_in_form(driver):
     input_name = 'Yuri'
     input_last_name = 'Lo'
@@ -40,15 +36,16 @@ def test_inter_in_form(driver):
     current_address = 'Thailand, Surathani, Ko Samui, Maenam, Soi 5, 22/24'
 
     wait = WebDriverWait(driver, 10)
-    driver.get('https://demoqa.com/automation-practice-form')  # заходим на стр
+    driver.set_window_size(860, 1620)
+    driver.get('https://demoqa.com/automation-practice-form')
 
-    text_string = driver.find_element(By.ID, 'firstName')  # указываем что ищем
+    text_string = driver.find_element(By.ID, 'firstName')
     text_string.send_keys(input_name)
 
-    text_string = driver.find_element(By.ID, 'lastName')  # указываем что ищем
+    text_string = driver.find_element(By.ID, 'lastName')
     text_string.send_keys(input_last_name)
 
-    text_string = driver.find_element(By.ID, 'userEmail')  # указываем что ищем
+    text_string = driver.find_element(By.ID, 'userEmail')
     text_string.send_keys(user_email)
 
     gender_label = driver.find_element(By.CSS_SELECTOR, 'label[for="gender-radio-1"]')
@@ -59,34 +56,34 @@ def test_inter_in_form(driver):
     hobbies_label.click()
     print("✅ Выбрали хобби: Music")
 
-    text_string = driver.find_element(By.ID, 'userNumber')  # указываем что ищем
+    text_string = driver.find_element(By.ID, 'userNumber')
     text_string.send_keys(user_number)
 
-    text_string = driver.find_element(By.ID, 'dateOfBirthInput')  # указываем что ищем
+    text_string = driver.find_element(By.ID, 'dateOfBirthInput')
     text_string.send_keys(birth_date)
 
-    text_string = driver.find_element(By.ID, 'currentAddress')  # указываем что ищем
+    text_string = driver.find_element(By.ID, 'currentAddress')
     text_string.send_keys(current_address)
 
-    state_input = driver.find_element(By.ID, 'subjectsInput')  # указываем что ищем
+    state_input = driver.find_element(By.ID, 'subjectsInput')
     state_input.send_keys(input_subject)
     state_input.send_keys(Keys.ENTER)
     print("✅ Выбрали subjects: Hindi")
 
-    state_input = driver.find_element(By.ID, 'react-select-3-input')  # указываем что ищем
+    state_input = driver.find_element(By.ID, 'react-select-3-input')
     state_input.send_keys(input_state)
     state_input.send_keys(Keys.ENTER)
     print("✅ Выбрали штат: NCR")
 
-    state_input = driver.find_element(By.ID, 'react-select-4-input')  # указываем что ищем
+    state_input = driver.find_element(By.ID, 'react-select-4-input')
     state_input.send_keys(input_city)
     state_input.send_keys(Keys.ENTER)
     print("✅ Выбрали город: Delhi")
 
-    submit_button = driver.find_element(By.ID, 'submit')  # Отправляем форму
+    submit_button = driver.find_element(By.ID, 'submit')
     driver.execute_script("arguments[0].click();", submit_button)
 
-    wait = WebDriverWait(driver, 10)  # Читаем результаты
+    wait = WebDriverWait(driver, 10)
     modal = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'modal-content')))
     rows = modal.find_elements(By.CSS_SELECTOR, '.table tr')
     print("\nРЕЗУЛЬТАТЫ:")
@@ -97,23 +94,21 @@ def test_inter_in_form(driver):
 
 
 def test_select_language(driver):
-    """Выбор языка и проверка результата"""
     wait = WebDriverWait(driver, 10)
     driver.get('https://www.qa-practice.com/elements/select/single_select')
-    select = Select(driver.find_element(By.ID, 'id_choose_language'))  # Выбираем Python
+    select = Select(driver.find_element(By.ID, 'id_choose_language'))
     select.select_by_visible_text('Python')
-    driver.find_element(By.ID, 'submit-id-submit').click()  # Отправляем
-    result = wait.until(EC.visibility_of_element_located((By.ID, 'result-text')))  # Проверяем
+    driver.find_element(By.ID, 'submit-id-submit').click()
+    result = wait.until(EC.visibility_of_element_located((By.ID, 'result-text')))
     assert result.text == 'Python'
     print("✅ Тест пройден!")
 
 
 def test_hello_world(driver):
-    """Минимальная версия теста"""
     wait = WebDriverWait(driver, 15)
     driver.get('https://the-internet.herokuapp.com/dynamic_loading/2')
-    driver.find_element(By.CSS_SELECTOR, '#start button').click()  # Клик
+    driver.find_element(By.CSS_SELECTOR, '#start button').click()
     print("✅ Кликнули Start")
-    result = wait.until(EC.visibility_of_element_located((By.ID, 'finish'))) # Ждём результат
-    assert result.text.strip() == 'Hello World!'  # Проверка
+    result = wait.until(EC.visibility_of_element_located((By.ID, 'finish')))
+    assert result.text.strip() == 'Hello World!'
     print(f"✅ Тест пройден! Текст: {result.text}")
