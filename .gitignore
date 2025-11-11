@@ -10,5 +10,5 @@ allure-results
 allure-report
 allure-reports 
 allureresults 
- 
- 
+test_cubicwork_no_class/test_dir/test_no_separate.py
+test_cubicwork_with_class/test_dir/test_separate.py
