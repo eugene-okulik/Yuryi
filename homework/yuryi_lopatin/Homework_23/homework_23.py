@@ -15,6 +15,7 @@ def driver():
     yield chrome_driver
     sleep(10)
 
+
 "Осуществляем проверку введенного текста assert(ом)"
 def test_input_text(driver):
     input_data = 'text'
@@ -24,6 +25,7 @@ def test_input_text(driver):
     text_string.send_keys(Keys.ENTER)
     result_text = driver.find_element(By.ID, 'result-text')
     assert result_text.text == input_data
+
 
 """Заполняем форму регистрации"""
 def test_inter_in_form(driver):
@@ -93,6 +95,7 @@ def test_inter_in_form(driver):
         if len(cells) == 2:
             print(f"{cells[0].text:20} | {cells[1].text}")
 
+
 def test_select_language(driver):
     """Выбор языка и проверка результата"""
     wait = WebDriverWait(driver, 10)
@@ -103,6 +106,7 @@ def test_select_language(driver):
     result = wait.until(EC.visibility_of_element_located((By.ID, 'result-text')))  # Проверяем
     assert result.text == 'Python'
     print("✅ Тест пройден!")
+
 
 def test_hello_world(driver):
     """Минимальная версия теста"""
