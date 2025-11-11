@@ -1,10 +1,10 @@
 import requests
 import allure
-from requests import JSONDecodeError
+#from requests import JSONDecodeError
 #from test_cubicwork_with_class.endpoints.endpoint import Endpoint  # Измените путь под ваш проект
 
 
-class UpdateCamp():
+class UpdateCamp:
     """Класс для обновления рекламных кампаний - адаптирован из вашего UpdateMeme"""
     url = 'https://aooh-test.cubicservice.ru/v1/campaigns/new?counterpartyId=7'
     response = None

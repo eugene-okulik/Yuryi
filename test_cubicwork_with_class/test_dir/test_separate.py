@@ -3,10 +3,14 @@ import pytest
 import allure
 import sys
 import os
+
+from homework.yuryi_lopatin.Homework_21_locust.homework_21 import response
 # Добавляем путь к корню проекта
 #sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from test_cubicwork_with_class.endpoints.create_camp import (CreateCamp)
-from test_cubicwork_with_class.endpoints.update_camp import (UpdateCamp)
+from test_cubicwork_with_class.endpoints.create_campaign import (CreateCamp)
+from test_cubicwork_with_class.endpoints.get_list_campaign import GetListCamp
+from test_cubicwork_with_class.endpoints.upload_advert import (UploadAdvert)
+from test_cubicwork_with_class.endpoints.update_campaign import (UpdateCamp)
 #from test_api_fin_project.endpoints.get_meme import (GetMeme)
 #from test_api_fin_project.endpoints.delete_meme import (DeleteMeme)
 
@@ -62,7 +66,6 @@ def test_upload_audio_file(new_token):
     try:
         with open(file_path, 'rb') as file:
             files = {'file': (file_name, file, 'audio')}
-
             response = requests.post(
                 'https://aooh-test.cubicservice.ru/v1/files/upload',
                 files=files,
@@ -98,7 +101,7 @@ def test_upload_audio_file(new_token):
 @allure.story('Upload file')
 @allure.title('Проверка загрузки аудио файла на сервер')
 @pytest.mark.smoke
-def test_status_upload_advert_filet(new_token):
+def test_status_upload_advert_files(new_token):
     print(f'\n=== Тест проверки загрузки аудио файла для рекламной кампаний ===')
     # Проверяем, что есть fileInfoId
     if not file_info_ids:
@@ -181,7 +184,7 @@ def test_create_and_update_advert_camp(new_token):
     create_camp.create_new_camp(create_body=create_body, headers=headers)
     #assert create_camp.status_code == 200, f"Ошибка: {create_camp.status_code} - {create_camp.text}"
 
-    campaign_data = create_camp.json()
+    campaign_data = create_camp.response.json()
     # print(f'📝 Создана кампания ID: {campaign_id}')
     # Сохраняем ID созданной кампании
     campaign_id = campaign_data
@@ -226,12 +229,12 @@ def test_get_list_adverts_campaigns(new_token):
             "pageItemCount": 10,
             "id": campaign_id,
             "status": 1}
-    response = requests.post(f'https://aooh-test.cubicservice.ru/v1/campaigns/get?counterpartyId=7',
-                             json=body, headers=headers)
-    print(f'Статус ответа: {response.status_code}')
-    print(f'Ответ: {response.text}')
-    with allure.step(f'Check status code for test_get_list_rk is: {response.status_code}'):
-        assert response.status_code == 200
+    get_list_camp = GetListCamp()
+    get_list_camp.get_list_adverts_campaigns(body=body, headers=headers)
+    #print(f'Статус ответа: {response.status_code}')
+    #print(f'Ответ: {response.text}')
+    # with allure.step(f'Check status code for test_get_list_rk is: {response.status_code}'):
+    #     assert response.status_code == 200
 
 """Тест получения кампании"""
 @allure.feature('Campaigns')
@@ -431,93 +434,3 @@ def test_rewiev_adverts(new_token):
     print(f'Ответ: {response.text}')
     with allure.step(f'Check status code for test_get_players is: {response.status_code}'):
         assert response.status_code == 200
-
-# Создание рекламной кампании с хардкодным fileId и без обновления
-# @allure.feature('Campaigns')
-# @allure.story('Manipulate adverts campaigns')
-# @allure.title('Создание рекламной кампании')
-# @pytest.mark.parametrize('name, categoryId, schedules, limit, files', [
-#     ("засс7365", 2,
-#      [{"dateFrom": "2025-08-20", "dateTo": "2025-09-20", "timeFrom": "10:10:30", "timeTo": "13:10:34", "weekDays": [1]}],
-#      {"type": 1, "value": 10},
-#      [{"position": 1, "fileId": 212}]),
-#      ("7365", 2,
-#      [{"dateFrom": "2025-07-20", "dateTo": "2025-07-20", "timeFrom": "10:10:10", "timeTo": "13:10:14", "weekDays": [1]}],
-#      {"type": 1, "value": 10},
-#      [{"position": 1, "fileId": 217}])
-#     ])
-# def test_create_new_campaign(name, categoryId, schedules, limit, files, new_token):
-#     print(f'\n=== Создание кампании: {name} ===')
-#
-#     body = {"name": name, "categoryId": categoryId, "schedules": schedules, "limit": limit, "files": files}
-#     headers = {'Authorization': f'Bearer {new_token}', 'Content-Type': 'application/json'}
-#     response = requests.post('https://aooh-test.cubicservice.ru/v1/campaigns/new?counterpartyId=51',
-#                              json=body, headers=headers)
-#     print(f'  Результат создания:')
-#     print(f'  Статус: {response.status_code}')
-#     #print(f'  Создана рк id: {response.text}')
-#     #Проверки
-#     with allure.step(f'Check status code for test_create_new_campaign is: {response.status_code}'):
-#         assert response.status_code == 200, f"Ошибка: {response.status_code} - {response.text}"
-#     # Сохраняем ID созданной кампании
-#     campaign_data = response.json()
-#     campaign_id = campaign_data
-#     print(f'🆔 API вернул ID как число: {campaign_id}')
-#     if campaign_id:
-#         created_campaigns.append(campaign_id)
-#         print(f'✅ Кампания создана с ID: {campaign_id}')
-#
-#
-# """Создаем кампанию с хардкодным fileId и сразу её обновляем"""
-# @allure.feature('Campaigns')
-# @allure.story('Manipulate adverts campaigns')
-# @allure.title('Создание и обновление рекламной кампании')
-# def test_create_and_update(new_token):
-#     print(f'\n=== Создание и немедленное обновление ===')
-#
-#     headers = {'Authorization': f'Bearer {new_token}', 'Content-Type': 'application/json'}
-#
-#     # 1. Создаем кампанию
-#     create_body = {
-#         "name": "campaign_to_update",
-#         "categoryId": 2,
-#         "schedules": [
-#             {"dateFrom": "2025-08-20", "dateTo": "2025-09-20", "timeFrom": "10:10:30", "timeTo": "13:10:34",
-#              "weekDays": [1]}],
-#         "limit": {"type": 1, "value": 10},
-#         "files": [{"position": 1, "fileId": 212}]
-#     }
-#
-#     create_response = requests.post('https://aooh-test.cubicservice.ru/v1/campaigns/new?counterpartyId=51',
-#                                     json=create_body, headers=headers)
-#
-#     assert create_response.status_code == 200, f"Ошибка создания: {create_response.status_code} - {create_response.text}"
-#
-#     campaign_data = create_response.json()
-#     #print(f'📝 Создана кампания ID: {campaign_id}')
-#     # Сохраняем ID созданной кампании
-#     campaign_id = campaign_data
-#     print(f'🆔 API вернул ID как число: {campaign_id}')
-#     if campaign_id:
-#         created_campaigns.append(campaign_id)
-#         print(f'✅ Кампания создана с ID: {campaign_id}')
-#     # 2. Сразу обновляем компанию (пока она в статусе draft)
-#     update_body = {
-#         "name": "updated_campaign_name",
-#         "categoryId": 2,
-#         "schedules": [
-#             {"dateFrom": "2025-08-21", "dateTo": "2025-09-21", "timeFrom": "11:11:31", "timeTo": "14:11:31",
-#              "weekDays": [1, 2, 3, 4, 5]}],
-#         "limit": {"type": 1, "value": 20},
-#         "files": [{"position": 1, "fileId": 212}]
-#     }
-#
-#     update_response = requests.post(
-#         f'https://aooh-test.cubicservice.ru/v1/campaigns/{campaign_id}/update?counterpartyId=51',
-#         json=update_body, headers=headers)
-#
-#     print(f'🔄 Статус обновления: {update_response.status_code}')
-#     print(f'📄 Ответ: {update_response.text}')
-#
-#     assert update_response.status_code == 200, f"Ошибка обновления: {update_response.status_code} - {update_response.text}"
-#     print(f'✅ Кампания успешно создана и обновлена!')
