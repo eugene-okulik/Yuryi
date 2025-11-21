@@ -30,7 +30,6 @@ def test_shop_with_action_chains(driver):
     print(driver.window_handles)
     tabs = driver.window_handles
     driver.switch_to.window(tabs[-1])  # Переключаемся на новую вкладку (последняя в списке)
-    #sleep(3)
     click_button = driver.find_element(By.ID, 'add_to_cart')  # указываем что ищем
     click_button.click()
     continue_button = driver.find_element(By.CLASS_NAME, 'btn-secondary')  # указываем что ищем
@@ -52,7 +51,6 @@ def test_in_shop2(driver):
     print("2. Наводим курсор на товар...")
     actions = ActionChains(driver)
     actions.move_to_element(photo).perform()
-    #sleep(3)
     print("3. Ищем иконку корзины...")
     basket = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'o_wsale_product_btn')))
     print("4. Делаем простой клик...", basket)
