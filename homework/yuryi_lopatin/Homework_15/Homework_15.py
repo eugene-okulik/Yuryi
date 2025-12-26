@@ -23,11 +23,11 @@ values = ('drummers', '1 september', '1_august')
 cursor.execute(query, values)
 group_id = cursor.lastrowid
 
-query = f"UPDATE students SET group_id = {group_id} WHERE id = {student_id}"
-cursor.execute(query)
+query = "UPDATE students SET group_id = %s WHERE id = %s"
+cursor.execute(query, (group_id, student_id))
 cursor.execute(f'SELECT * FROM students WHERE id = {student_id}')
 print(cursor.fetchone())
-
+'''
 query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
 values = ('Jim Chapin', student_id)
 cursor.execute(query, values)
@@ -62,6 +62,22 @@ cursor.execute(query, values)
 book5_id = cursor.lastrowid
 cursor.execute(f'SELECT * FROM books WHERE id = {book5_id}')
 print(cursor.fetchone())
+'''
+# Вместо пяти отдельных INSERT-запросов
+book_titles = [
+    ('Jim Chapin', student_id),
+    ('Erick Lapton', student_id),
+    ('Shafl', student_id),
+    ('Kononol', student_id),
+    ('Stick control', student_id)
+]
+
+query = "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)"
+cursor.executemany(query, book_titles)
+
+# Если хотим проверить все добавленные книги:
+cursor.execute('SELECT * FROM books WHERE taken_by_student_id = %s', (student_id,))
+print(cursor.fetchall())
 
 query = "INSERT INTO subjets (title) VALUES ('solfejio')"
 cursor.execute(query)
@@ -74,6 +90,8 @@ cursor.execute(query)
 subject2_id = cursor.lastrowid
 cursor.execute(f'SELECT * FROM subjets WHERE id = {subject2_id}')
 print(cursor.fetchone())
+
+(cursor.fetchall())
 
 query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
 values = ('swing', subject1_id)
@@ -103,25 +121,20 @@ lesson4_id = cursor.lastrowid
 cursor.execute(f'SELECT * FROM lessons WHERE id = {lesson4_id}')
 print(cursor.fetchone())
 
-query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (5, lesson1_id, student_id)
-cursor.execute(query, values)
-mark1_id = cursor.lastrowid
+# Вместо четырех отдельных INSERT-запросов
+marks_data = [
+    (5, lesson1_id, student_id),
+    (4, lesson2_id, student_id),
+    (3, lesson3_id, student_id),
+    (4, lesson4_id, student_id)
+]
 
 query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (4, lesson2_id, student_id)
-cursor.execute(query, values)
-mark2_id = cursor.lastrowid
+cursor.executemany(query, marks_data)
 
-query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (3, lesson3_id, student_id)
-cursor.execute(query, values)
-mark3_id = cursor.lastrowid
-
-query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values = (4, lesson4_id, student_id)
-cursor.execute(query, values)
-mark4_id = cursor.lastrowid
+# Если нужно проверить добавленные оценки:
+cursor.execute('SELECT * FROM marks WHERE student_id = %s', (student_id,))
+print(cursor.fetchall())
 
 db.commit()
 
