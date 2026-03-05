@@ -1,7 +1,6 @@
 from playwright.sync_api import Page, expect, BrowserContext, Dialog
 
 
-"""alert accept"""
 def test_alert_accept(page: Page):
     def cancel_alert(alert: Dialog):
         print(alert.message)
@@ -14,7 +13,6 @@ def test_alert_accept(page: Page):
     alert.click()
 
 
-"""Работа с tab(ами)"""
 def test_tabs(page: Page, context: BrowserContext):
     page.goto('https://www.qa-practice.com/elements/new_tab/button')
     link = page.locator('#new-page-button')
@@ -25,8 +23,8 @@ def test_tabs(page: Page, context: BrowserContext):
     expect(result).to_have_text('I am a new page in a new tab')
     print(f"Текс на новой вкладка: {result.inner_text()}")
     expect(link).to_be_enabled()
-    print(f"Первая вкладка: кнопка активна")
-    new_page.close()  # Закрываем новую вкладку
+    print("Первая вкладка: кнопка активна")
+    new_page.close()
 
 
 def test_color_change_full(page: Page):
