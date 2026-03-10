@@ -28,7 +28,6 @@ def test_tabs(page: Page, context: BrowserContext):
     new_page.close()
 
 
-"""Ждём изменения класса кнопки"""
 def test_color_change_wait_class(page: Page):
     page.goto('https://demoqa.com/dynamic-properties')
     color_btn = page.locator('#colorChange')
