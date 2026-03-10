@@ -27,6 +27,7 @@ def test_tabs(page: Page, context: BrowserContext):
     print("Первая вкладка: кнопка активна")
     new_page.close()
 
+
 """Ждём изменения класса кнопки"""
 def test_color_change_wait_class(page: Page):
     page.goto('https://demoqa.com/dynamic-properties')
@@ -35,7 +36,7 @@ def test_color_change_wait_class(page: Page):
     initial_class = color_btn.get_attribute('class')
     print(f"Начальные классы: {initial_class}")  # Проверяем начальные классы
 
-    expect(color_btn).to_have_class(re.compile('text-danger'), timeout=10000)  #Ждём появления класса 'text-danger'
+    expect(color_btn).to_have_class(re.compile('text-danger'), timeout=10000)  # Ждём появления класса 'text-danger'
 
     new_class = color_btn.get_attribute('class')
     print(f"Новые классы: {new_class}")  # Проверяем что класс действительно изменился
