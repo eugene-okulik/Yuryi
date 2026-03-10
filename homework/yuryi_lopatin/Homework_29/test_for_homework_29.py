@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, expect, BrowserContext, Dialog
+import re
 
 
 def test_alert_accept(page: Page):
@@ -26,19 +27,18 @@ def test_tabs(page: Page, context: BrowserContext):
     print("Первая вкладка: кнопка активна")
     new_page.close()
 
+"""Ждём изменения класса кнопки"""
+def test_color_change_wait_class(page: Page):
+    page.goto('https://demoqa.com/dynamic-properties')
+    color_btn = page.locator('#colorChange')
 
-def test_color_change_full(page: Page):
-    print("\n" + "=" * 70)
-    page.goto('https://demoqa.com/dynamic-properties')  # Открываем страницу
-    print("Страница загружена")
-    color_change_btn = page.locator('#colorChange')  # Находим кнопку
-    initial_color = color_change_btn.evaluate('el => getComputedStyle(el).color')  # Проверяем начальный цвет
-    print(f"Начальный цвет: {initial_color}")
-    print("Ждём изменения цвета (5 сек)...")
-    page.wait_for_timeout(5500)   # Ждём изменения цвета (происходит через 5 секунд). Ждём чуть больше 5 секунд
-    new_color = color_change_btn.evaluate('el => getComputedStyle(el).color')  # Проверяем что цвет изменился
-    print(f"Новый цвет: {new_color}")
-    assert initial_color != new_color, \
-        f"Цвет не изменился! Был и остался: {initial_color}"
-    print("Цвет изменился!")
-    print("=" * 70 + "\n")
+    initial_class = color_btn.get_attribute('class')
+    print(f"Начальные классы: {initial_class}")  # Проверяем начальные классы
+
+    expect(color_btn).to_have_class(re.compile('text-danger'), timeout=10000)  #Ждём появления класса 'text-danger'
+
+    new_class = color_btn.get_attribute('class')
+    print(f"Новые классы: {new_class}")  # Проверяем что класс действительно изменился
+
+    assert 'text-danger' in new_class
+    print("Класс изменился!")
