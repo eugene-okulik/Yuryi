@@ -11,7 +11,7 @@ def test_modify_specific_api(page: Page):
     def change_req(route: Route):
         response = route.fetch()
         print(response)
-        print(f"\n Перехвачен API запрос:")
+        print("\n Перехвачен API запрос:")
         print(f"{route.request.url}")
         try:
             data = response.json()
