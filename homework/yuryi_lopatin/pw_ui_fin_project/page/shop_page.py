@@ -28,7 +28,6 @@ class ShopPage(BasePage):
         print(f"✅ Открыли страницу товара {name_text}")
         print("=" * 70 + "\n")
 
-
     """Полный тест продукта с hover и цепочками"""
     def switch_last_product(self):
         products = self.page.locator(loc.CART)  # 1. Получаем все товары
@@ -52,13 +51,11 @@ class ShopPage(BasePage):
         print(f"✅ Открыли страницу товара {product_name}")
         print("=" * 70 + "\n")
 
-
     def last_product(self):
         shop_section = self.page.locator(loc.PODUCTSGRID)  # ищем блок товаров → ищем первый товар → внутри найти кнопку
         last_product = shop_section.locator(loc.CART).last
         buy_button = last_product.locator(loc.BTNPRIMARY)
         buy_button.click()
-
 
     def visible_shopping_cart_in_product_cart(self):
         last_product = self.page.locator(loc.CART).last  # Наводим на последний товар
@@ -67,7 +64,6 @@ class ShopPage(BasePage):
         assert quick_view_button.is_visible()
         self.page.wait_for_timeout(500)  # Даём время на анимацию
         print("✅ Навели на товар - теперь видна кнопка quick_view_button")
-
 
     def action_chain_qa(self):
         button = self.page.locator(loc.PAGE).first

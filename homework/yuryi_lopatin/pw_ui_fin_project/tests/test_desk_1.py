@@ -40,10 +40,10 @@ def test_apply_filter(page: Page, filter_text: str, expected_url: str, filter_na
 
 
 def test_click_shopping_cart_on_product_car(page: Page):  # тест функции кнопки shopping cart на карточке товара
-  # Цепочка: найти элемент → кликнуть
-  shop_click = Desk1Page(page)
-  shop_click.open()
-  shop_click.click_shopping_cart_on_product_car()
+    # Цепочка: найти элемент → кликнуть
+    shop_click = Desk1Page(page)
+    shop_click.open()
+    shop_click.click_shopping_cart_on_product_car()
 
 
 def test_last_product(page: Page):  # тест поиск элементов внутри других элементов

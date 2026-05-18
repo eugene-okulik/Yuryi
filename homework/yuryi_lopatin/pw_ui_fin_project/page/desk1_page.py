@@ -52,7 +52,8 @@ class Desk1Page(BasePage):
         print("=" * 70 + "\n")
 
     def filter_products_chainge_page(self):
-        button = self.page.locator(loc.CARTBTN).first.click()
+        button = self.page.locator(loc.CARTBTN)
+        button.first.click()
         # Проверяем что открылась страница товара
         expect(self.page).to_have_url(f"{self.base_url}{SHOP}")
         print("По клику на products выполнен переход на стр")
