@@ -11,7 +11,6 @@ THANKYOU = "/contactus-thank-you"
 class ContactusPage(BasePage):
     page_url = '/contactus'
 
-
     def print_in_form_with_chain_qa(self):
         # Цепочка заполнения формы
         form = self.page.locator(loc.FORM)

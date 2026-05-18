@@ -1,10 +1,8 @@
 class BasePage:
     base_url = 'http://testshop.qa-practice.com'
 
-
     def __init__(self, page):
         self.page = page
-
 
     def open(self, url=None):
         if url:

@@ -3,7 +3,6 @@ from page.locators.common_locators import CommonLocators
 
 class DeskLocators(CommonLocators):
 
-
     """локаторы для Desks"""
     CHECKBOXSTEEL = '.fw-normal'
     CARTBTN = '.breadcrumb-item'

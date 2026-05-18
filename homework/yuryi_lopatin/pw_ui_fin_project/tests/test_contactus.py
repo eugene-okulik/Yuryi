@@ -1,7 +1,6 @@
-from page.contactus_page import  ContactusPage
+from page.contactus_page import ContactusPage
 from playwright.sync_api import Page
 import time
-
 
 """Проверка заполнение формы → отправка → проверка"""
 def test_prnt_form_about_user(page: Page):

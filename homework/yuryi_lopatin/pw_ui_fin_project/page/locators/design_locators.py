@@ -1,9 +1,7 @@
 from page.locators.common_locators import CommonLocators
 
 
-"""Локаторы для страницы Design"""
 class DesignLocators(CommonLocators):
-
 
     ADD = '#add_to_cart'  # Локатор для поиска кнопки add to cart
     QUANTITY = '.my_cart_quantity'  # Локатор для проверки значения кол-во товаров в корзине

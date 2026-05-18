@@ -20,7 +20,6 @@ LAST_PRODUCT = "/shop/furn-7888-desk-stand-with-screen-21?category=1"
 class Desk1Page(BasePage):
     page_url = DESKS_1
 
-
     def apply_filter(self, filter_text: str, expected_url: str):
         """Универсальный метод применения фильтра сортировки"""
         self.page.get_by_role(loc.ROLEBTN, name=loc.FEATURED).click()
@@ -32,12 +31,10 @@ class Desk1Page(BasePage):
         expect(self.page).to_have_url(f"{self.base_url}{expected_url}")
         print(f"✅ УСПЕХ, фильтр {name_filter_after} применён\n")
 
-
     def count_all_product_in_page(self):
         products = self.page.locator(loc.CART)
         print("=" * 70 + "\n")
         print(f"Всего товаров: {products.count()}")
-
 
     def checkbox_steel(self):
         # Цепочка 1: кликнуть на чекбокс
@@ -54,18 +51,15 @@ class Desk1Page(BasePage):
         # print(" Кликнули на чекбокс steel - открыли страницу товара Customizable Desk")
         print("=" * 70 + "\n")
 
-
     def filter_products_chainge_page(self):
         button = self.page.locator(loc.CARTBTN).first.click()
         # Проверяем что открылась страница товара
         expect(self.page).to_have_url(f"{self.base_url}{SHOP}")
         print("По клику на products выполнен переход на стр")
 
-
     def click_shopping_cart_on_product_car(self):
         # Цепочка: найти элемент → кликнуть
         self.page.locator(loc.CART).first.click()
-
 
     def nested_locators(self):
         # Найти блок товаров → внутри найти первый товар → внутри найти кнопку
@@ -73,8 +67,3 @@ class Desk1Page(BasePage):
         last_product = shop_section.locator(loc.CART).last
         buy_button = last_product.locator(loc.BTNPRIMARY)
         buy_button.click()
-
-
-    def nested_locators_string(self):
-        # Цепочка: найти элемент → кликнуть
-        self.page.locator(loc.PODUCTSGRID).locator(loc.CART).first.locator(loc.BTNPRIMARY).click()
