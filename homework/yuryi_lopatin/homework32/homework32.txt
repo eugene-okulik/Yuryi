@@ -1,0 +1,43 @@
+Задание 1.2
+---------------------------------------------------------------------------
+
+                           JUMPING
+
+  g  <  ESC-<       *  Go to first line in file (or line N).
+  G  >  ESC->       *  Go to last line in file (or line N).
+---------------------------------------------------------------------------
+
+                           MOVING
+  
+  f  ^F  ^V  SPACE  *  Forward  one window (or N lines).
+  e  ^E  j  ^N  CR  *  Forward  one line   (or N lines).
+  y  ^Y  k  ^K  ^P  *  Backward one line   (or N lines).
+---------------------------------------------------
+		 SEARCHING
+  
+  /pattern          *  Search forward for (N-th) matching line.
+  ?pattern          *  Search backward for (N-th) matching line.
+  n                 *  Repeat previous search (for N-th occurrence).  
+  N                 *  Repeat previous search in reverse direction.
+  
+---------------------------------------------------
+Задание 2.
+
+root
+drwx------   8 root root   4096 Apr  3 05:53 root - папка
+
+dev
+crw-rw-rw- 1 root root      1,   5 Nov 27  2024 zero - символьное устройство
+crw-rw-rw- 1 root root      1,   3 Nov 27  2024 null - символьное устройство
+brw-rw---- 1 root disk    252,   0 Nov 27  2024 vda  - блочное устройство
+crw-rw-rw- 1 root tty       5,   0 May 16  2025 tty  - символьное устройство
+
+etc
+-rw-r--r-- 1 root        root 9058 May 26 16:41 passwd - файл
+
+proc
+lrwxrwxrwx  1 root       root   11 May 27 10:20 mounts -> self/mounts - ссылка
+
+bin
+-rwxr-xr-x 1 root   root        1984 Apr  8  2022  zcat - файл
+-rwxr-xr-x 1 root   root      142144 Sep  5  2019  ls   - файл
